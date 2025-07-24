@@ -13,9 +13,6 @@
                     <button onclick="exportFeedback()" class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
                         <i class="fas fa-download mr-2"></i>Export
                     </button>
-                    <a href="<?= base_url('feedback/analytics') ?>" class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
-                        <i class="fas fa-chart-line mr-2"></i>Analytics
-                    </a>
                 </div>
             </div>
         </div>

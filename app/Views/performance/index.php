@@ -13,9 +13,6 @@
                     <button onclick="refreshData()" class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
                         <i class="fas fa-sync-alt mr-2"></i>Refresh
                     </button>
-                    <a href="<?= base_url('performance/analytics') ?>" class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
-                        <i class="fas fa-chart-line mr-2"></i>Analytics
-                    </a>
                 </div>
             </div>
         </div>

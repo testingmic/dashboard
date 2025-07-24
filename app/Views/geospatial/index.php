@@ -10,9 +10,6 @@
                     <p class="text-green-100 text-lg">Real-time location analytics and delivery optimization</p>
                 </div>
                 <div class="flex items-center space-x-3">
-                    <button onclick="refreshMapData()" class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
-                        <i class="fas fa-sync-alt mr-2"></i>Refresh
-                    </button>
                     <button onclick="toggleFullscreen()" class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
                         <i class="fas fa-expand mr-2"></i>Fullscreen
                     </button>

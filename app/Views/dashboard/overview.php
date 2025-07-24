@@ -9,14 +9,6 @@
                     <h2 class="text-3xl font-bold mb-2">Dashboard Overview</h2>
                     <p class="text-blue-100 text-lg">Monitor your delivery platform performance in real-time</p>
                 </div>
-                <div class="flex items-center space-x-3">
-                    <button class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
-                        <i class="fas fa-download mr-2"></i>Export Report
-                    </button>
-                    <button class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
-                        <i class="fas fa-cog mr-2"></i>Settings
-                    </button>
-                </div>
             </div>
         </div>
         <!-- Decorative elements -->
