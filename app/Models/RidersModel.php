@@ -161,4 +161,8 @@ class RidersModel extends Model
 
         return $this->update($riderId, $data);
     }
+
+    public function getAverageRating() {
+        return 0;
+    }
 } 

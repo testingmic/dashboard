@@ -159,4 +159,28 @@ class OrdersModel extends Model
 
         return $builder->orderBy('created_at', 'DESC')->get()->getResultArray();
     }
+
+    public function getAveragePickupTime() {
+        return 0;
+    }
+
+    public function getCompletionRate() {
+        return 0;
+    }
+
+    public function getRejectionRate() {
+        return 0;
+    }
+    
+    public function getAverageRating() {
+        return 0;
+    }
+
+    public function getAverageDeliveryTimeByDate($date) {
+        return [];
+    }
+
+    public function getAveragePickupTimeByDate($date) {
+        return [];
+    }
 } 
