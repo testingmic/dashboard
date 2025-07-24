@@ -114,6 +114,18 @@
             overflow: hidden;
         }
     </style>
+    <script>
+        const baseUrl = "<?= base_url() ?>";
+        const arrayStream = {
+            'feedbackData' : <?= json_encode($feedback ?? []) ?>,
+            'revenueChart': <?= json_encode($revenueChart ?? []) ?>,
+            'rejectionReasons': <?= json_encode($rejectionReasons ?? []) ?>,
+            'chartData': <?= json_encode($chartData ?? []) ?>,
+            'stats': <?= json_encode($stats ?? []) ?>,
+            'highCancellationAreas': <?= json_encode($highCancellationAreas ?? []) ?>,
+        };
+    </script>
+    <script src="<?= base_url('js/app.js') ?>"></script>
 </head>
 <body class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen">
     <!--                 -->

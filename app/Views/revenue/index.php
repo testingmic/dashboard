@@ -10,7 +10,7 @@
                     <p class="text-purple-100 text-lg">Track your financial performance and payment analytics</p>
                 </div>
                 <div class="flex items-center space-x-3">
-                    <button onclick="exportRevenue()" class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
+                    <button onclick="return RevenueHandler.exportRevenue()" class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
                         <i class="fas fa-download mr-2"></i>Export CSV
                     </button>
                 </div>
@@ -259,7 +259,7 @@
                 <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
                     <?= count($revenue) ?> records
                 </span>
-                <button onclick="exportRevenue()" class="text-blue-600 hover:text-blue-700 text-sm font-medium bg-blue-50 px-4 py-2 rounded-xl hover:bg-blue-100 transition-colors">
+                <button onclick="return RevenueHandler.exportRevenue()" class="text-blue-600 hover:text-blue-700 text-sm font-medium bg-blue-50 px-4 py-2 rounded-xl hover:bg-blue-100 transition-colors">
                     <i class="fas fa-download mr-2"></i>Export
                 </button>
             </div>
@@ -580,151 +580,3 @@
         </div>
     </div>
 </div>
-
-<script>
-// Revenue Trend Chart
-const revenueTrendCtx = document.getElementById('revenue-trend-chart').getContext('2d');
-const revenueTrendChart = new Chart(revenueTrendCtx, {
-    type: 'line',
-    data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        datasets: [{
-            label: 'Revenue',
-            data: [45000, 52000, 48000, 61000, 55000, 67000, 72000, 68000, 75000, 82000, 78000, 85000],
-            borderColor: 'rgb(59, 130, 246)',
-            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-            tension: 0.4,
-            fill: true,
-            pointBackgroundColor: 'rgb(59, 130, 246)',
-            pointBorderColor: '#fff',
-            pointBorderWidth: 2,
-            pointRadius: 6
-        }, {
-            label: 'Commission',
-            data: [6750, 7800, 7200, 9150, 8250, 10050, 10800, 10200, 11250, 12300, 11700, 12750],
-            borderColor: 'rgb(236, 72, 153)',
-            backgroundColor: 'rgba(236, 72, 153, 0.1)',
-            tension: 0.4,
-            fill: false,
-            pointBackgroundColor: 'rgb(236, 72, 153)',
-            pointBorderColor: '#fff',
-            pointBorderWidth: 2,
-            pointRadius: 4
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: {
-            mode: 'index',
-            intersect: false,
-        },
-        plugins: {
-            legend: {
-                display: true,
-                position: 'top'
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
-                    }
-                }
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Revenue ($)'
-                },
-                ticks: {
-                    callback: function(value) {
-                        return '$' + value.toLocaleString();
-                    }
-                }
-            }
-        }
-    }
-});
-
-// Payment Methods Chart
-const paymentMethodsCtx = document.getElementById('payment-methods-chart').getContext('2d');
-const paymentMethodsChart = new Chart(paymentMethodsCtx, {
-    type: 'doughnut',
-    data: {
-        labels: ['Card Payments', 'Digital Wallet', 'Cash', 'Bank Transfer'],
-        datasets: [{
-            data: [55, 30, 12, 3],
-            backgroundColor: [
-                'rgba(59, 130, 246, 0.8)',
-                'rgba(16, 185, 129, 0.8)',
-                'rgba(156, 163, 175, 0.8)',
-                'rgba(245, 158, 11, 0.8)'
-            ],
-            borderColor: [
-                '#3b82f6',
-                '#10b981',
-                '#9ca3af',
-                '#f59e0b'
-            ],
-            borderWidth: 2
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                position: 'bottom'
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                        const percentage = ((context.parsed / total) * 100).toFixed(1);
-                        return context.label + ': ' + percentage + '%';
-                    }
-                }
-            }
-        }
-    }
-});
-
-// Trend period selector
-document.getElementById('trend-period').addEventListener('change', function() {
-    const period = this.value;
-    console.log('Trend period changed to:', period);
-    // Here you would typically fetch new data from the server and update the chart
-});
-
-function exportRevenue() {
-    // Get current filters
-    const urlParams = new URLSearchParams(window.location.search);
-    const exportUrl = '<?= base_url('revenue/export') ?>?' + urlParams.toString();
-    
-    // Create temporary link and trigger download
-    const link = document.createElement('a');
-    link.href = exportUrl;
-    link.download = 'revenue_export.csv';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-
-function clearFilters() {
-    window.location.href = '<?= base_url('revenue') ?>';
-}
-
-// Auto-refresh data every 5 minutes
-setInterval(function() {
-    // You can add AJAX call here to refresh data
-    console.log('Refreshing revenue data...');
-}, 300000);
-
-// Initialize charts on page load
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Revenue analytics dashboard loaded');
-});
-</script> 

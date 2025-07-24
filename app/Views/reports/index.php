@@ -20,7 +20,7 @@
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2">Order Reports</h3>
             <p class="text-sm text-gray-600 mb-4">Detailed order information including status, payments, and delivery times</p>
-            <button onclick="generateReport('orders')" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <button onclick="ReportsHandler.generateReport('orders')" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                 Generate Report
             </button>
         </div>
@@ -34,7 +34,7 @@
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2">Rider Activity Reports</h3>
             <p class="text-sm text-gray-600 mb-4">Rider performance metrics, earnings, and delivery statistics</p>
-            <button onclick="generateReport('riders')" class="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+            <button onclick="ReportsHandler.generateReport('riders')" class="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
                 Generate Report
             </button>
         </div>
@@ -48,7 +48,7 @@
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2">Revenue Reports</h3>
             <p class="text-sm text-gray-600 mb-4">Financial data including revenue, commissions, and payment methods</p>
-            <button onclick="generateReport('revenue')" class="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+            <button onclick="ReportsHandler.generateReport('revenue')" class="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
                 Generate Report
             </button>
         </div>
@@ -62,7 +62,7 @@
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2">User Reports</h3>
             <p class="text-sm text-gray-600 mb-4">Customer behavior, order history, and spending patterns</p>
-            <button onclick="generateReport('users')" class="w-full px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
+            <button onclick="ReportsHandler.generateReport('users')" class="w-full px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
                 Generate Report
             </button>
         </div>
@@ -195,68 +195,3 @@
         </div>
     </div>
 </div>
-
-<script>
-function generateReport(reportType) {
-    // Set default dates (last 30 days)
-    const endDate = new Date().toISOString().split('T')[0];
-    const startDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-    
-    document.getElementById('reportType').value = reportType;
-    document.querySelector('input[name="start_date"]').value = startDate;
-    document.querySelector('input[name="end_date"]').value = endDate;
-    
-    // Submit the form
-    document.getElementById('reportForm').submit();
-}
-
-// Report form submission
-document.getElementById('reportForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this);
-    const reportType = formData.get('report_type');
-    const format = formData.get('format');
-    
-    if (!reportType) {
-        alert('Please select a report type');
-        return;
-    }
-    
-    // Show loading modal
-    document.getElementById('reportModal').classList.remove('hidden');
-    
-    if (format === 'csv') {
-        // For CSV, redirect to download
-        const params = new URLSearchParams(formData);
-        window.location.href = '<?= base_url('reports/generate') ?>?' + params.toString();
-    } else {
-        // For JSON, fetch data
-        fetch('<?= base_url('reports/generate') ?>', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('reportModal').classList.add('hidden');
-            if (data.success) {
-                // Display data in a modal or download
-                console.log('Report data:', data);
-                alert('Report generated successfully!');
-            } else {
-                alert('Error: ' + data.message);
-            }
-        })
-        .catch(error => {
-            document.getElementById('reportModal').classList.add('hidden');
-            console.error('Error:', error);
-            alert('An error occurred while generating the report');
-        });
-    }
-});
-
-// Auto-hide modal after CSV download
-setTimeout(() => {
-    document.getElementById('reportModal').classList.add('hidden');
-}, 3000);
-</script> 

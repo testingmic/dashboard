@@ -239,7 +239,7 @@
                                            class="text-blue-600 hover:text-blue-700" title="View Details">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <button onclick="updateRiderStatus(<?= $rider['id'] ?>)" 
+                                        <button onclick="RidersHandler.updateRiderStatus(<?= $rider['id'] ?>)" 
                                                 class="text-green-600 hover:text-green-700" title="Update Status">
                                             <i class="fas fa-edit"></i>
                                         </button>
@@ -302,47 +302,3 @@
         </div>
     </div>
 </div>
-
-<script>
-function updateRiderStatus(riderId) {
-    document.getElementById('riderId').value = riderId;
-    document.getElementById('riderStatusModal').classList.remove('hidden');
-}
-
-function closeRiderStatusModal() {
-    document.getElementById('riderStatusModal').classList.add('hidden');
-    document.getElementById('riderStatusForm').reset();
-}
-
-// Rider status form submission
-document.getElementById('riderStatusForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this);
-    
-    fetch('<?= base_url('riders/updateStatus') ?>', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            closeRiderStatusModal();
-            location.reload();
-        } else {
-            alert('Error: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while updating the rider status');
-    });
-});
-
-// Close modal when clicking outside
-document.getElementById('riderStatusModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeRiderStatusModal();
-    }
-});
-</script> 

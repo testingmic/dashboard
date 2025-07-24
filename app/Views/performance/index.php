@@ -158,7 +158,7 @@
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Top Rejection Reasons</h3>
                 <p class="text-gray-600">Most common reasons for order cancellations</p>
             </div>
-            <button onclick="exportRejectionData()" class="text-blue-600 hover:text-blue-700 text-sm font-medium bg-blue-50 px-4 py-2 rounded-xl hover:bg-blue-100 transition-colors">
+            <button onclick="PerformanceHandler.exportRejectionData()" class="text-blue-600 hover:text-blue-700 text-sm font-medium bg-blue-50 px-4 py-2 rounded-xl hover:bg-blue-100 transition-colors">
                 <i class="fas fa-download mr-2"></i>Export
             </button>
         </div>
@@ -288,94 +288,3 @@
         </div>
     </div>
 </div>
-
-<script>
-// Performance Chart
-const performanceCtx = document.getElementById('performance-chart').getContext('2d');
-const performanceChart = new Chart(performanceCtx, {
-    type: 'line',
-    data: {
-        labels: <?= json_encode($chartData['labels'] ?? []) ?>,
-        datasets: [{
-            label: 'Delivery Time (min)',
-            data: <?= json_encode($chartData['delivery_times'] ?? []) ?>,
-            borderColor: '#3b82f6',
-            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-            tension: 0.4,
-            fill: true
-        }, {
-            label: 'Pickup Time (min)',
-            data: <?= json_encode($chartData['pickup_times'] ?? []) ?>,
-            borderColor: '#10b981',
-            backgroundColor: 'rgba(16, 185, 129, 0.1)',
-            tension: 0.4,
-            fill: true
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                position: 'top',
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Time (minutes)'
-                }
-            }
-        }
-    }
-});
-
-// Rejection Rate Chart
-const rejectionCtx = document.getElementById('rejection-chart').getContext('2d');
-const rejectionChart = new Chart(rejectionCtx, {
-    type: 'doughnut',
-    data: {
-        labels: ['Completed', 'Rejected'],
-        datasets: [{
-            data: [<?= (100 - ($stats['rejection_rate'] ?? 0)) ?>, <?= $stats['rejection_rate'] ?? 0 ?>],
-            backgroundColor: ['#10b981', '#ef4444'],
-            borderWidth: 0
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                position: 'bottom',
-            }
-        }
-    }
-});
-
-function refreshData() {
-    location.reload();
-}
-
-function exportRejectionData() {
-    const data = <?= json_encode($rejectionReasons ?? []) ?>;
-    const csvContent = "data:text/csv;charset=utf-8," 
-        + "Reason,Count\n"
-        + data.map(row => `${row.cancel_reason},${row.count}`).join("\n");
-    
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "rejection_reasons.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-
-// Auto-refresh data every 10 minutes
-setInterval(function() {
-    console.log('Refreshing performance data...');
-}, 600000);
-</script> 
