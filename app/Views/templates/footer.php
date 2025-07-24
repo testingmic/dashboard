@@ -7,23 +7,46 @@
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.getElementById('sidebar');
             const sidebarToggle = document.getElementById('sidebar-toggle');
-            const mobileSidebarToggle = document.getElementById('mobile-sidebar-toggle');
+            const sidebarClose = document.getElementById('sidebar-close');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
             const userMenuButton = document.getElementById('user-menu-button');
             const userMenuDropdown = document.getElementById('user-menu-dropdown');
 
             // Mobile sidebar toggle
-            if (mobileSidebarToggle) {
-                mobileSidebarToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('-translate-x-full');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.add('open');
+                    sidebarOverlay.classList.add('open');
+                    document.body.classList.add('sidebar-open');
                 });
             }
 
-            // Desktop sidebar toggle
-            if (sidebarToggle) {
-                sidebarToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('-translate-x-full');
+            // Mobile sidebar close
+            if (sidebarClose) {
+                sidebarClose.addEventListener('click', function() {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.classList.remove('open');
+                    document.body.classList.remove('sidebar-open');
                 });
             }
+
+            // Close sidebar when clicking overlay
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', function() {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.classList.remove('open');
+                    document.body.classList.remove('sidebar-open');
+                });
+            }
+
+            // Close sidebar when pressing Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.classList.remove('open');
+                    document.body.classList.remove('sidebar-open');
+                }
+            });
 
             // User menu dropdown
             if (userMenuButton && userMenuDropdown) {

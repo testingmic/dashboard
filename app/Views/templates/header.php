@@ -77,11 +77,41 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
+        
+        /* Mobile sidebar styles */
+        @media (max-width: 1023px) {
+            .sidebar-mobile {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar-mobile.open {
+                transform: translateX(0);
+            }
+            
+            .sidebar-overlay {
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+            
+            .sidebar-overlay.open {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        
+        /* Prevent body scroll when sidebar is open on mobile */
+        body.sidebar-open {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen">
+    <!-- Mobile Sidebar Overlay -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40 sidebar-overlay lg:hidden" id="sidebar-overlay"></div>
+    
     <!-- Sidebar -->
-    <div class="fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-white to-gray-50 shadow-2xl sidebar-transition" id="sidebar">
+    <div class="fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-white to-gray-50 shadow-2xl sidebar-transition sidebar-mobile lg:translate-x-0" id="sidebar">
         <div class="flex flex-col h-full">
             <!-- Logo Section -->
             <div class="p-6 border-b border-gray-200">
@@ -164,6 +194,13 @@
                     </button>
                 </div>
             </div>
+            
+            <!-- Mobile Close Button -->
+            <div class="p-4 lg:hidden">
+                <button id="sidebar-close" class="w-full px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 font-medium">
+                    <i class="fas fa-times mr-2"></i>Close Menu
+                </button>
+            </div>
         </div>
     </div>
 
@@ -176,7 +213,10 @@
                     <button id="sidebar-toggle" class="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <div class="hidden md:block">
+                    <div class="block lg:hidden">
+                        <h1 class="text-xl font-bold gradient-text"><?= $title ?? 'Dashboard' ?></h1>
+                    </div>
+                    <div class="hidden lg:block">
                         <h1 class="text-2xl font-bold gradient-text"><?= $title ?? 'Dashboard' ?></h1>
                     </div>
                 </div>
