@@ -137,8 +137,8 @@
             <!-- Logo Section -->
             <div class="p-6 border-b border-gray-200">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-                        <i class="fas fa-chart-line text-white text-lg"></i>
+                    <div class="w-10 h-10  rounded-xl flex items-center justify-center">
+                        <img src="<?= base_url('images/logo.png') ?>" alt="Wekada Logo" class="w-10 h-10">
                     </div>
                     <div>
                         <h1 class="text-xl font-bold gradient-text">Wekada</h1>

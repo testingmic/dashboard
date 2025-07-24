@@ -29,7 +29,7 @@ class Dashboard extends LoadController
     public function index()
     {
         $data = [
-            'title' => 'Dashboard Overview',
+            'title' => 'Overview',
             'page' => 'dashboard',
             'kpis' => $this->getKPIs(),
             'recentOrders' => $this->getRecentOrders(),

@@ -54,7 +54,7 @@
         <!-- Logo and Brand Section -->
         <div class="text-center mb-8">
             <div class="inline-flex items-center justify-center w-20 h-20 bg-white bg-opacity-20 rounded-full mb-6 pulse-glow">
-                <i class="fas fa-chart-line text-white text-3xl"></i>
+                <img src="<?= base_url('images/logo.png') ?>" alt="Wekada Logo" class="w-10 h-10">
             </div>
             <h1 class="text-3xl font-bold text-white mb-2">Wekada Analytics</h1>
             <p class="text-white text-opacity-80">Sign in to your dashboard</p>
