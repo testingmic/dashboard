@@ -1,0 +1,71 @@
+<?php
+namespace App\Libraries\Validation;
+
+class MessagesValidation {
+
+    public $routes = [
+        'rooms' => [
+            'method' => 'GET',
+            'authenticate' => true,
+            'payload' => []
+        ],
+        'join' => [
+            'method' => 'POST',
+            'authenticate' => true,
+            'payload' => [
+                'roomId' => 'required|integer',
+                'roomUUID' => 'required|string|max_length[64]',
+            ]
+        ],
+        'creategroup' => [
+            'method' => 'POST',
+            'authenticate' => true,
+            'payload' => [
+                'name' => 'required|string|max_length[255]',
+                'description' => 'permit_empty|string|max_length[255]'
+            ]
+        ],
+        'leave:roomId' => [
+            'method' => 'POST',
+            'authenticate' => true,
+            'payload' => [
+                'roomId' => 'required|integer',
+            ]
+        ],
+        'send' => [
+            'method' => 'POST,GET',
+            'authenticate' => true,
+            'payload' => [
+                'roomId' => 'permit_empty|integer',
+                'receiver' => 'required|integer',
+                'uuid' => 'permit_empty|max_length[64]',
+                'type' => 'permit_empty|string|in_list[individual,group]',
+                'message' => 'permit_empty|string|max_length[255]',
+                'timestamp' => 'permit_empty|integer|max_length[16]'
+            ]
+        ],
+        'list' => [
+            'method' => 'POST,GET',
+            'authenticate' => true,
+            'payload' => [
+                'roomId' => 'permit_empty|integer',
+                'receiverId' => 'permit_empty|integer',
+            ]
+        ],
+        'remove:roomId' => [
+            'method' => 'DELETE',
+            'authenticate' => true,
+            'payload' => [
+                'roomId' => 'required|integer',
+            ]
+        ],
+        'delete:roomId' => [
+            'method' => 'DELETE',
+            'authenticate' => true,
+            'payload' => [
+                'roomId' => 'required|integer',
+                'type' => 'required|string|in_list[group,individual]'
+            ]
+        ]
+    ];
+}

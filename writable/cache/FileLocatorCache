@@ -1,0 +1,225 @@
+<?php return array (
+  'search' => 
+  array (
+    'Config/Services' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Config/Services.php',
+          1 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/system/Config/Services.php',
+        ),
+      ),
+    ),
+    'Config/Registrar.php' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'Helpers/kint_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/system/Helpers/kint_helper.php',
+        ),
+      ),
+    ),
+    'Helpers/url_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/system/Helpers/url_helper.php',
+        ),
+      ),
+    ),
+    'Config/Events.php' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Config/Events.php',
+        ),
+      ),
+    ),
+    'Config/Filters.php' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Config/Filters.php',
+          1 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/system/Config/Filters.php',
+        ),
+      ),
+    ),
+    'Helpers/array_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/system/Helpers/array_helper.php',
+        ),
+      ),
+    ),
+    'Config/Routes.php' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Config/Routes.php',
+        ),
+      ),
+    ),
+    'Language/en/HTTP.php' => 
+    array (
+      'php' => 
+      array (
+        0 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/system/Language/en/HTTP.php',
+        ),
+      ),
+    ),
+    'Helpers/database_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Helpers/database_helper.php',
+        ),
+      ),
+    ),
+    'Helpers/configs_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Helpers/configs_helper.php',
+        ),
+      ),
+    ),
+    'Helpers/text_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/system/Helpers/text_helper.php',
+        ),
+      ),
+    ),
+    'Helpers/auth_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Helpers/auth_helper.php',
+        ),
+      ),
+    ),
+    'Helpers/utilities_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Helpers/utilities_helper.php',
+        ),
+      ),
+    ),
+    'Helpers/users_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Helpers/users_helper.php',
+        ),
+      ),
+    ),
+    'Helpers/courses_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Helpers/courses_helper.php',
+        ),
+      ),
+    ),
+    'Helpers/classes_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Helpers/classes_helper.php',
+        ),
+      ),
+    ),
+    'Helpers/support_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Helpers/support_helper.php',
+        ),
+      ),
+    ),
+    'Config/General' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'Language/en/Validation.php' => 
+    array (
+      'php' => 
+      array (
+        0 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/system/Language/en/Validation.php',
+          1 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Language/en/Validation.php',
+        ),
+      ),
+    ),
+    'Helpers/messages_helper' => 
+    array (
+      'php' => 
+      array (
+        1 => 
+        array (
+          0 => '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Helpers/messages_helper.php',
+        ),
+      ),
+    ),
+  ),
+  'findQualifiedNameFromPath' => 
+  array (
+    '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Config/Services.php' => 'Config\\Services',
+  ),
+  'getClassname' => 
+  array (
+    '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/app/Config/Filters.php' => 'Config\\Filters',
+    '/Applications/XAMPP/xamppfiles/htdocs/elearn-api/system/Config/Filters.php' => 'CodeIgniter\\Config\\Filters',
+  ),
+);

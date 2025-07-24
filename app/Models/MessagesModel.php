@@ -1,0 +1,413 @@
+<?php 
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+use App\Models\DbTables;
+use CodeIgniter\Database\Exceptions\DatabaseException;
+use PhpParser\Node\Expr\FuncCall;
+
+class MessagesModel extends Model {
+
+    public $payload = [];
+    protected $table;
+    protected $chatsDb;
+    protected $primaryKey = "chat_id";
+
+    public function __construct() {
+        parent::__construct();
+        
+        $this->table = DbTables::$userTable;
+        foreach(DbTables::initTables() as $key) {
+            if (property_exists($this, $key)) {
+                $this->{$key} = DbTables::${$key};
+            }
+        }
+
+        $this->chatsDb = $this->db;
+    }
+
+    /**
+     * Create chat room
+     * 
+     * @param int $sender
+     * @param int $receiver
+     * @param string $type
+     * @param array $receipientsList
+     * @param string $roomUUID
+     * @return array
+     */
+    public function createChatRoom($sender, $receiver, $type, $receipientsList = null, $roomUUID = null, $groupInfo = null) {
+
+        try {
+            $this->db->table('chat_rooms')->insert([
+                'sender_id' => $sender,
+                'receiver_id' => $receiver,
+                'type' => $type,
+                'room_uuid' => $roomUUID,
+                'created_at' => date('Y-m-d H:i:s'),
+                'receipients_list' => json_encode($receipientsList)
+            ]);
+            $roomId = $this->db->insertID();
+
+            // update the group info if it exists
+            if(!empty($groupInfo)) {
+                $this->db->table('chat_rooms')->update([
+                    'name' => substr($groupInfo['name'], 0, 60),
+                    'description' => !empty($groupInfo['description']) ? substr($groupInfo['description'], 0, 100) : ''
+                ], ['room_id' => $roomId]);
+            }
+
+            // create the room for the sender and receiver
+            foreach([$sender, $receiver] as $userId) {
+                if(empty($userId)) continue;
+                $this->chatsDb->table('user_chat_rooms')->insert([
+                    'room_id' => (int)$roomId,
+                    'user_id' => (int)$userId,
+                    'type' => $type,
+                ]);
+            }
+
+            return $roomId;
+
+        } catch (DatabaseException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * Get chat room
+     * 
+     * @param int $roomId
+     * @return array
+     */
+    public function getChatRoom($roomId) {
+        try {
+            return $this->db->table('chat_rooms')->where('room_id', $roomId)->get()->getRowArray();
+        } catch (DatabaseException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Get chat room by room name
+     * 
+     * @param string $roomName
+     * @return array
+     */
+    public function getChatRoomByRoomName($roomName, $creatorId) {
+        try {
+            return $this->db->table('chat_rooms')->where('name', $roomName)->where('sender_id', $creatorId)->get()->getRowArray();
+        } catch (DatabaseException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Update chat room
+     * 
+     * @param int $roomId
+     * @param int $userId
+     * @param array $data
+     * @return bool
+     */
+    public function joinChatRoom($roomId, $userId, $data) {
+        try {
+            // update the main chat room
+            $this->db->table('chat_rooms')->where('room_id', $roomId)->update($data);
+
+            // update the chats database
+            $this->chatsDb->table('user_chat_rooms')->insert([
+                'room_id' => (int)$roomId,
+                'user_id' => (int)$userId,
+                'type' => 'group',
+            ]);
+            return true;
+        } catch (DatabaseException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Leave chat room
+     * 
+     * @param int $roomId
+     * @param int $userId
+     * @param array $receipientsList
+     * 
+     * @return bool
+     */
+    public function leaveChatRoom($roomId, $userId, $receipientsList) {
+        try {
+            $this->db->table('chat_rooms')->where('room_id', $roomId)->update(['receipients_list' => json_encode($receipientsList)]);
+            $this->chatsDb->table('user_chat_rooms')->where('room_id', $roomId)->where('user_id', $userId)->delete();
+            return true;
+        } catch (DatabaseException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Get individual chat room id
+     * 
+     * @param int $sender
+     * @param int $receiver
+     * @return int
+     */
+    public function getIndividualChatRoomId($sender, $receiver) {
+        try {
+            $roomId = $this->db->query("SELECT * FROM chat_rooms 
+                WHERE ((sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)) AND type = 'individual'
+                LIMIT 1", [$sender, $receiver, $receiver, $sender])->getRowArray();
+            return $roomId;
+        } catch (DatabaseException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Get user chat rooms
+     * 
+     * @param int $userId
+     * @return array
+     */
+    public function getUserChatRooms($userId, $roomId = null) {
+
+        try {
+        
+            $rooms = $this->chatsDb->table('user_chat_rooms')->where('user_id', $userId);
+
+            if(!empty($roomId)) {
+                $rooms->where('room_id', $roomId);
+            }
+            $chatRooms = $rooms->get()->getResultArray();
+
+            if(empty($chatRooms)) {
+                return [];
+            }
+
+            // get the user names for the individual chats
+            $roomIds = array_column($chatRooms, 'room_id');
+
+            // get the participants for the rooms
+            $participants = $this->db->table('chat_rooms')->select('*')->whereIn('room_id', $roomIds)->get()->getResultArray();
+            if(empty($participants)) {
+                return [];
+            }
+
+            $groupsList = [];
+            $groupedType = [];
+            $userIdsByRoomId = [];
+            foreach($participants as $key => $par) {
+                $groupedType[$par['room_id']] = $par['type'];
+
+                $data = [
+                    'type' => $par['type'],
+                    'participants' => json_decode($par['receipients_list'], true),
+                    'name' => $par['name'],
+                    'description' => $par['description'],
+                ];
+
+                $userIdsByRoomId[$par['room_id']] = $data;
+                if($par['type'] == 'group') {
+                    $data['room_id'] = $par['room_id'];
+                    $data['last_login'] = $par['last_message_at'];
+                    $data['room_uuid'] = $par['room_uuid'];
+                    $data['creator'] = $par['sender_id'];
+                    $groupsList[] = $data;
+                }
+            }
+
+            $participants = array_column($participants, 'receipients_list');
+
+            // convert each record to an array
+            $participants = array_map(function($participant) {
+                return json_decode($participant, true);
+            }, $participants);
+
+            // group the participants into one array
+            $participants = array_unique(array_merge(...$participants));
+
+            // remove the current user from the participants
+            $participants = array_values(array_diff($participants, [$userId]));
+
+            // get the users for the participants
+            $users = [];
+
+            // get the users for the participants
+            if(!empty($participants) && is_array($participants)) {
+                $users = $this->db->table('users')
+                                ->select('user_id, full_name, username, profile_image, last_login')
+                                ->where('is_active', '1')
+                                ->whereIn('user_id', $participants)
+                                ->get()
+                                ->getResultArray();
+            }
+
+            $roomsList = [];
+            // add the users to the rooms list
+            foreach($users as $user) {
+                $theRoom = array_filter($userIdsByRoomId, function($room) use ($user) {
+                    return in_array($user['user_id'], $room['participants']);
+                });
+                $user['room_id'] = array_keys($theRoom)[0] ?? 0;
+                $user['room'] = array_values($theRoom)[0] ?? [];
+                $roomsList[] = $user;
+            }
+
+            if(!empty($groupsList)) {
+                foreach($groupsList as $group) {
+                    $group['full_name'] = $group['name'];
+                    $group['username'] = $group['name'];
+                    $group['user_id'] = $group['room_id'];
+
+                    $count = count($group['participants']);
+
+                    // int all participants
+                    $group['room'] = [
+                        'type' => 'group',
+                        'participants' => array_map('intval', $group['participants']),
+                        'name' => $group['name'],
+                        'description' => $group['description'],
+                    ];
+                    $group['participants'] = $count == 1 ? '1 participant' : $count . ' participants';
+                    unset($group['description']);
+                    unset($group['name']);
+                    $roomsList[] = $group;
+                }
+            }
+
+            return $roomsList;
+
+        } catch (DatabaseException $e) {
+            return [];
+        }
+    }
+
+    /**
+     * Get chat room by room id
+     * 
+     * @param int $roomId
+     * @param int $userId
+     * @return array
+     */
+    public function getChatRoomByRoomId($roomId, $userId) {
+        try {
+            return $this->chatsDb->table('user_chat_rooms')
+                        ->where('room_id', $roomId)
+                        ->where('user_id', $userId)
+                        ->get()->getRowArray();
+        } catch (DatabaseException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Send message
+     * 
+     * @param int $roomId
+     * @param int $userId
+     * @param string $content
+     * @param string $mediaUrl
+     * @param string $mediaType
+     * @return int
+     */
+    public function postMessage($payload) {
+        try {
+            // insert the message
+            $this->db->table('chat_messages')->insert([
+                'room_id' => $payload['room_id'],
+                'user_id' => $payload['user_id'],
+                'content' => $payload['content'],
+                'self_destruct_at' => $payload['self_destruct_at'] ?? date('Y-m-d H:i:s', strtotime("+24 hours")),
+                'unique_id' => $payload['unique_id'],
+                'media_url' => $payload['media_url'] ?? '',
+                'media_type' => $payload['media_type'] ?? 'text',
+            ]);
+
+            $insertId = $this->db->insertID();
+
+            // Update last message timestamp
+            $this->db->table('chat_rooms')->where('room_id', $payload['room_id'])->update(['last_message_at' => date('Y-m-d H:i:s')]);
+
+            // return the message id
+            return $insertId;
+        } catch (DatabaseException $e) {
+            return 0;
+        }
+    }
+
+    /**
+     * Get messages
+     * 
+     * @param int $roomId
+     * @param int $userId
+     * @param int $page
+     * @param int $limit
+     * @return array
+     */
+    public function getMessages($roomId, $page = 1, $limit = 50) {
+        try {
+
+            // Check if user is a participant
+            $offset = ($page - 1) * $limit;
+            $messages = $this->db->table("chat_messages c")
+                ->select("c.*, m.media")
+                ->join("resources m", "m.record_id = c.message_id AND m.section='chats'", "left")
+                ->where("c.room_id", $roomId)
+                ->orderBy("c.created_at", "DESC")
+                ->limit($limit)
+                ->offset($offset)
+                ->get()->getResultArray();
+
+            return $messages;
+        } catch (DatabaseException $e) {
+            return [];
+        }
+    }
+
+    /**
+     * Delete chat
+     * 
+     * @param int $roomId
+     * @param string $type
+     * @param int $userId
+     */
+    public function deleteChat($roomId, $userId) {
+        try {
+
+            // delete the messages for the sender
+            $this->db->table('chat_messages')->set('sender_deleted', 1)
+                                                    ->where('user_id', $userId)
+                                                    ->where('room_id', $roomId)
+                                                    ->update();
+
+            // delete the messages for the receiver
+            $this->db->table('chat_messages')->set('receiver_deleted', 1)
+                                                    ->where('user_id !=', $userId)
+                                                    ->where('room_id', $roomId)
+                                                    ->update();
+
+            return true;
+        } catch (DatabaseException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * Update chat room
+     * 
+     * @param int $roomId
+     * @param array $data
+     * @return bool
+     */
+    public function updateChatRoom($roomId, $data) {
+        try {
+            $this->chatsDb->table('chat_rooms')->where('room_id', $roomId)->update($data);
+            return true;
+        } catch (DatabaseException $e) {
+            return false;
+        }
+    }
+
+}

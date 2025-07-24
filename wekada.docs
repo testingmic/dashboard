@@ -1,0 +1,81 @@
+WEKADA ANALYTICS DASHBOARD
+
+### 🔷 1. **Dashboard Home (Overview Screen)**
+A high-level summary with key performance indicators (KPIs):
+
+* Total Orders Today / This Week / This Month
+* Active Users / Riders
+* Total Revenue / Earnings (with time filters)
+* Average Delivery Time
+* Orders In Progress / Completed / Canceled
+* Real-time Map (optional): Current rider locations, ongoing deliveries
+
+
+### 🔷 2. **Orders Management**
+* Order ID, User, Rider, Price
+* Pickup & Delivery locations
+* Time Created / Time Picked / Time Delivered
+* Status: Pending, Accepted, Picked Up, Delivered, Canceled
+* Payment Status: Paid, Unpaid, Refunded
+* Filters: by date, rider, user, location, status
+
+
+### 🔷 3. **User Analytics**
+* Total number of users
+* New Signups (daily/weekly/monthly)
+* Retention Rate / Repeat users
+* Average number of orders per user
+* User heatmap: Which cities/areas are most active
+* Top users by order count or spending
+
+
+### 🔷 4. **Rider Analytics**
+* Total number of riders
+* New rider registrations
+* Average deliveries per rider per day
+* Acceptance rate (how often they accept jobs)
+* Completion rate (how many accepted jobs were completed)
+* Rider ratings and feedback (if ratings exist)
+* Earnings per rider (daily/weekly/monthly)
+* Rider online/availability tracker
+
+### 🔷 5. **Revenue & Payments**
+* Daily/weekly/monthly revenue
+* Revenue by location
+* Commission earned by platform
+* Payouts to riders (schedule, amount)
+* Refunds issued
+* Payment methods usage breakdown (e.g. card, wallet, etc.)
+
+
+### 🔷 6. **Geospatial Insights (Map Screen)**
+* Real-time rider positions
+* Heatmaps of order density
+* Locations with high cancellation rate
+
+
+### 🔷 7. **Service Performance**
+* Average pickup time
+* Average delivery time
+* Order rejection/cancellation reasons
+
+
+### 🔷 8. **Feedback and Ratings**
+* User feedback per order
+* Rider ratings
+* Flagged users or riders (abuse, fraud)
+* Negative feedback trends
+
+
+### 🔷 9. **Settings / Config Management**
+* Commission rate per city/region
+* Delivery pricing algorithm configuration
+* Surge pricing controls
+* Rider incentive settings
+
+
+### 10. **Custom Reports Generator**
+Let admins export:
+* Order reports (CSV/Excel)
+* Rider activity logs
+* Revenue statements
