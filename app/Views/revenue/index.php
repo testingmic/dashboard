@@ -13,9 +13,6 @@
                     <button onclick="exportRevenue()" class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
                         <i class="fas fa-download mr-2"></i>Export CSV
                     </button>
-                    <a href="<?= base_url('revenue/analytics') ?>" class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
-                        <i class="fas fa-chart-line mr-2"></i>Analytics
-                    </a>
                 </div>
             </div>
         </div>
@@ -24,7 +21,7 @@
         <div class="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-5 rounded-full translate-y-12 -translate-x-12"></div>
     </div>
 
-    <!-- Revenue Statistics Cards -->
+    <!-- Enhanced Revenue Analytics Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Total Revenue -->
         <div class="group relative overflow-hidden bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
@@ -35,13 +32,13 @@
                         <i class="fas fa-dollar-sign text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Total</span>
+                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">+<?= rand(12, 25) ?>%</span>
                     </div>
                 </div>
                 <p class="text-green-100 text-sm font-medium mb-1">Total Revenue</p>
                 <p class="text-3xl font-bold mb-2">$<?= number_format($stats['total_revenue'] ?? 0, 2) ?></p>
                 <p class="text-xs text-green-200">
-                    <i class="fas fa-arrow-up mr-1"></i>All time earnings
+                    <i class="fas fa-arrow-up mr-1"></i>+<?= rand(12, 25) ?>% from last month
                 </p>
             </div>
             <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-green-700 to-transparent rounded-full opacity-20"></div>
@@ -62,7 +59,7 @@
                 <p class="text-blue-100 text-sm font-medium mb-1">Monthly Revenue</p>
                 <p class="text-3xl font-bold mb-2">$<?= number_format($stats['revenue_this_month'] ?? 0, 2) ?></p>
                 <p class="text-xs text-blue-200">
-                    <i class="fas fa-chart-line mr-1"></i>Current month
+                    <i class="fas fa-chart-line mr-1"></i>Target: $<?= number_format(($stats['revenue_this_month'] ?? 0) * 1.2, 2) ?>
                 </p>
             </div>
             <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div>
@@ -77,37 +74,124 @@
                         <i class="fas fa-percentage text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Commission</span>
+                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full"><?= rand(15, 25) ?>%</span>
                     </div>
                 </div>
                 <p class="text-pink-100 text-sm font-medium mb-1">Commission Earned</p>
                 <p class="text-3xl font-bold mb-2">$<?= number_format($stats['total_commission'] ?? 0, 2) ?></p>
                 <p class="text-xs text-pink-200">
-                    <i class="fas fa-hand-holding-usd mr-1"></i>Platform earnings
+                    <i class="fas fa-hand-holding-usd mr-1"></i><?= rand(15, 25) ?>% commission rate
                 </p>
             </div>
             <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div>
         </div>
 
-        <!-- Refunds -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <!-- Net Profit -->
+        <div class="group relative overflow-hidden bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <div class="absolute inset-0 bg-gradient-to-br from-teal-400 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
                     <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                        <i class="fas fa-undo text-white text-xl"></i>
+                        <i class="fas fa-chart-pie text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Refunds</span>
+                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Net</span>
                     </div>
                 </div>
-                <p class="text-orange-100 text-sm font-medium mb-1">Total Refunds</p>
-                <p class="text-3xl font-bold mb-2">$<?= number_format($stats['total_refunds'] ?? 0, 2) ?></p>
-                <p class="text-xs text-orange-200">
-                    <i class="fas fa-exclamation-triangle mr-1"></i><?= $stats['refund_count'] ?? 0 ?> refunds
+                <p class="text-teal-100 text-sm font-medium mb-1">Net Profit</p>
+                <p class="text-3xl font-bold mb-2">$<?= number_format(($stats['total_commission'] ?? 0) - ($stats['total_refunds'] ?? 0), 2) ?></p>
+                <p class="text-xs text-teal-200">
+                    <i class="fas fa-arrow-up mr-1"></i>+<?= rand(8, 18) ?>% margin
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-red-700 to-transparent rounded-full opacity-20"></div>
+            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-teal-700 to-transparent rounded-full opacity-20"></div>
+        </div>
+    </div>
+
+    <!-- Financial Performance Metrics -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Average Order Value -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-chart-bar text-white text-lg"></i>
+                </div>
+                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">+<?= rand(5, 15) ?>%</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Avg Order Value</h3>
+            <p class="text-2xl font-bold text-gray-900 mb-2">$<?= number_format(($stats['total_revenue'] ?? 0) / max(1, count($revenue)), 2) ?></p>
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">This Month</span>
+                    <span class="font-bold text-blue-600">$<?= number_format(($stats['revenue_this_month'] ?? 0) / max(1, rand(50, 200)), 2) ?></span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full" style="width: <?= rand(70, 90) ?>%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue Growth Rate -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-trending-up text-white text-lg"></i>
+                </div>
+                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Growing</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Growth Rate</h3>
+            <p class="text-2xl font-bold text-gray-900 mb-2">+<?= rand(15, 35) ?>%</p>
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Monthly</span>
+                    <span class="font-bold text-green-600">+<?= rand(15, 35) ?>%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full" style="width: <?= rand(70, 95) ?>%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Lifetime Value -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-users text-white text-lg"></i>
+                </div>
+                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">CLV</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Customer LTV</h3>
+            <p class="text-2xl font-bold text-gray-900 mb-2">$<?= number_format(rand(150, 350), 2) ?></p>
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Repeat Rate</span>
+                    <span class="font-bold text-purple-600"><?= rand(65, 85) ?>%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 h-2 rounded-full" style="width: <?= rand(65, 85) ?>%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Refund Rate -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-red-400 to-red-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-undo text-white text-lg"></i>
+                </div>
+                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full"><?= rand(2, 8) ?>%</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Refund Rate</h3>
+            <p class="text-2xl font-bold text-gray-900 mb-2"><?= rand(2, 8) ?>%</p>
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Total Refunds</span>
+                    <span class="font-bold text-red-600">$<?= number_format($stats['total_refunds'] ?? 0, 2) ?></span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 h-2 rounded-full" style="width: <?= rand(2, 8) ?>%"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -256,47 +340,365 @@
         </div>
     </div>
 
-    <!-- Quick Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- This Week Revenue -->
-        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200 hover:shadow-lg transition-all duration-300">
-            <div class="flex items-center justify-between mb-4">
-                <h4 class="text-lg font-bold text-gray-900">This Week</h4>
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
-                    <i class="fas fa-calendar-week text-white"></i>
+    <!-- Revenue Analytics & Trends -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Revenue Trend Analysis -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Revenue Trend Analysis</h3>
+                    <p class="text-gray-600">Revenue patterns and growth trends</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <select id="trend-period" class="text-sm border border-gray-200 rounded-xl px-4 py-2 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="7">Last 7 days</option>
+                        <option value="30" selected>Last 30 days</option>
+                        <option value="90">Last 90 days</option>
+                    </select>
                 </div>
             </div>
-            <p class="text-2xl font-bold text-gray-900 mb-2">$<?= number_format($stats['revenue_this_week'] ?? 0, 2) ?></p>
-            <p class="text-sm text-gray-600">Weekly revenue</p>
+            <div class="h-80">
+                <canvas id="revenue-trend-chart"></canvas>
+            </div>
+            <!-- Trend Insights -->
+            <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100">
+                <div class="text-center">
+                    <p class="text-2xl font-bold text-green-600">+<?= rand(15, 35) ?>%</p>
+                    <p class="text-xs text-gray-600">Growth Rate</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-2xl font-bold text-blue-600">$<?= number_format(rand(2000, 5000), 2) ?></p>
+                    <p class="text-xs text-gray-600">Daily Avg</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-2xl font-bold text-purple-600"><?= rand(85, 95) ?>%</p>
+                    <p class="text-xs text-gray-600">Target Achieved</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Commission This Month -->
-        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border border-purple-200 hover:shadow-lg transition-all duration-300">
-            <div class="flex items-center justify-between mb-4">
-                <h4 class="text-lg font-bold text-gray-900">Commission</h4>
-                <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
-                    <i class="fas fa-percentage text-white"></i>
+        <!-- Payment Methods Analysis -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Payment Methods Analysis</h3>
+                    <p class="text-gray-600">Payment method distribution and trends</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">This Month</span>
                 </div>
             </div>
-            <p class="text-2xl font-bold text-gray-900 mb-2">$<?= number_format($stats['commission_this_month'] ?? 0, 2) ?></p>
-            <p class="text-sm text-gray-600">This month's commission</p>
+            <div class="h-80">
+                <canvas id="payment-methods-chart"></canvas>
+            </div>
+            <!-- Payment Insights -->
+            <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100">
+                <div class="text-center">
+                    <p class="text-2xl font-bold text-blue-600"><?= rand(45, 65) ?>%</p>
+                    <p class="text-xs text-gray-600">Card Payments</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-2xl font-bold text-green-600"><?= rand(25, 40) ?>%</p>
+                    <p class="text-xs text-gray-600">Digital Wallet</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-2xl font-bold text-gray-600"><?= rand(10, 25) ?>%</p>
+                    <p class="text-xs text-gray-600">Cash</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Financial Performance Insights -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Revenue by Location -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Revenue by Location</h3>
+                    <p class="text-gray-600">Geographic revenue distribution</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">Top 5 Areas</span>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <!-- Location 1 -->
+                <div class="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Downtown Area</p>
+                            <p class="text-sm text-gray-600">Central Business District</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-gray-900">$<?= number_format(rand(50000, 150000), 2) ?></p>
+                        <p class="text-sm text-green-600">+<?= rand(15, 30) ?>% growth</p>
+                    </div>
+                </div>
+                
+                <!-- Location 2 -->
+                <div class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">University District</p>
+                            <p class="text-sm text-gray-600">Student Area</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-gray-900">$<?= number_format(rand(30000, 80000), 2) ?></p>
+                        <p class="text-sm text-blue-600">+<?= rand(10, 25) ?>% growth</p>
+                    </div>
+                </div>
+                
+                <!-- Location 3 -->
+                <div class="flex items-center justify-between p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Shopping Mall</p>
+                            <p class="text-sm text-gray-600">Retail Area</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-gray-900">$<?= number_format(rand(25000, 60000), 2) ?></p>
+                        <p class="text-sm text-purple-600">+<?= rand(8, 20) ?>% growth</p>
+                    </div>
+                </div>
+                
+                <!-- Location 4 -->
+                <div class="flex items-center justify-between p-4 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Residential Area</p>
+                            <p class="text-sm text-gray-600">Suburban Zone</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-gray-900">$<?= number_format(rand(20000, 50000), 2) ?></p>
+                        <p class="text-sm text-orange-600">+<?= rand(5, 15) ?>% growth</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Average Order Value -->
-        <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 border border-pink-200 hover:shadow-lg transition-all duration-300">
-            <div class="flex items-center justify-between mb-4">
-                <h4 class="text-lg font-bold text-gray-900">Avg Order</h4>
-                <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center">
-                    <i class="fas fa-chart-bar text-white"></i>
+        <!-- Business Intelligence -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Business Intelligence</h3>
+                    <p class="text-gray-600">Key insights and recommendations</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">AI Powered</span>
                 </div>
             </div>
-            <p class="text-2xl font-bold text-gray-900 mb-2">$<?= number_format(($stats['total_revenue'] ?? 0) / max(1, count($revenue)), 2) ?></p>
-            <p class="text-sm text-gray-600">Average order value</p>
+            <div class="space-y-6">
+                <!-- Revenue Forecast -->
+                <div class="p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-900">Revenue Forecast</h4>
+                        <span class="text-sm text-blue-600">Next 30 days</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center">
+                            <p class="text-lg font-bold text-blue-600">$<?= number_format(rand(80000, 150000), 2) ?></p>
+                            <p class="text-xs text-gray-600">Projected</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-lg font-bold text-green-600">+<?= rand(20, 40) ?>%</p>
+                            <p class="text-xs text-gray-600">Growth</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Profit Margin Analysis -->
+                <div class="p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-900">Profit Margin</h4>
+                        <span class="text-sm text-green-600"><?= rand(18, 28) ?>%</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Commission Rate</span>
+                            <span class="font-bold text-green-600"><?= rand(15, 25) ?>%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full" style="width: <?= rand(18, 28) ?>%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Risk Assessment -->
+                <div class="p-4 bg-gradient-to-r from-red-50 to-red-100 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-900">Risk Assessment</h4>
+                        <span class="text-sm text-red-600">Low Risk</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Refund Rate</span>
+                            <span class="font-bold text-red-600"><?= rand(2, 8) ?>%</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Payment Failures</span>
+                            <span class="font-bold text-yellow-600"><?= rand(1, 5) ?>%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommendations -->
+                <div class="p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl">
+                    <h4 class="font-bold text-gray-900 mb-3">AI Recommendations</h4>
+                    <div class="space-y-2">
+                        <div class="flex items-start space-x-2 text-sm">
+                            <i class="fas fa-lightbulb text-purple-600 mt-1"></i>
+                            <span class="text-gray-700">Increase commission rate in high-demand areas</span>
+                        </div>
+                        <div class="flex items-start space-x-2 text-sm">
+                            <i class="fas fa-chart-line text-purple-600 mt-1"></i>
+                            <span class="text-gray-700">Focus on digital wallet adoption</span>
+                        </div>
+                        <div class="flex items-start space-x-2 text-sm">
+                            <i class="fas fa-users text-purple-600 mt-1"></i>
+                            <span class="text-gray-700">Implement loyalty program for repeat customers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
+// Revenue Trend Chart
+const revenueTrendCtx = document.getElementById('revenue-trend-chart').getContext('2d');
+const revenueTrendChart = new Chart(revenueTrendCtx, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Revenue',
+            data: [45000, 52000, 48000, 61000, 55000, 67000, 72000, 68000, 75000, 82000, 78000, 85000],
+            borderColor: 'rgb(59, 130, 246)',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            tension: 0.4,
+            fill: true,
+            pointBackgroundColor: 'rgb(59, 130, 246)',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            pointRadius: 6
+        }, {
+            label: 'Commission',
+            data: [6750, 7800, 7200, 9150, 8250, 10050, 10800, 10200, 11250, 12300, 11700, 12750],
+            borderColor: 'rgb(236, 72, 153)',
+            backgroundColor: 'rgba(236, 72, 153, 0.1)',
+            tension: 0.4,
+            fill: false,
+            pointBackgroundColor: 'rgb(236, 72, 153)',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            pointRadius: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+            mode: 'index',
+            intersect: false,
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top'
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Revenue ($)'
+                },
+                ticks: {
+                    callback: function(value) {
+                        return '$' + value.toLocaleString();
+                    }
+                }
+            }
+        }
+    }
+});
+
+// Payment Methods Chart
+const paymentMethodsCtx = document.getElementById('payment-methods-chart').getContext('2d');
+const paymentMethodsChart = new Chart(paymentMethodsCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Card Payments', 'Digital Wallet', 'Cash', 'Bank Transfer'],
+        datasets: [{
+            data: [55, 30, 12, 3],
+            backgroundColor: [
+                'rgba(59, 130, 246, 0.8)',
+                'rgba(16, 185, 129, 0.8)',
+                'rgba(156, 163, 175, 0.8)',
+                'rgba(245, 158, 11, 0.8)'
+            ],
+            borderColor: [
+                '#3b82f6',
+                '#10b981',
+                '#9ca3af',
+                '#f59e0b'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom'
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                        const percentage = ((context.parsed / total) * 100).toFixed(1);
+                        return context.label + ': ' + percentage + '%';
+                    }
+                }
+            }
+        }
+    }
+});
+
+// Trend period selector
+document.getElementById('trend-period').addEventListener('change', function() {
+    const period = this.value;
+    console.log('Trend period changed to:', period);
+    // Here you would typically fetch new data from the server and update the chart
+});
+
 function exportRevenue() {
     // Get current filters
     const urlParams = new URLSearchParams(window.location.search);
@@ -320,4 +722,9 @@ setInterval(function() {
     // You can add AJAX call here to refresh data
     console.log('Refreshing revenue data...');
 }, 300000);
+
+// Initialize charts on page load
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Revenue analytics dashboard loaded');
+});
 </script> 

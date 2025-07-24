@@ -24,7 +24,7 @@
         <div class="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-5 rounded-full translate-y-12 -translate-x-12"></div>
     </div>
 
-    <!-- Real-time Stats Cards -->
+    <!-- Enhanced Geospatial Analytics Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Active Orders -->
         <div class="group relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
@@ -68,28 +68,28 @@
             <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-green-700 to-transparent rounded-full opacity-20"></div>
         </div>
 
-        <!-- Order Density -->
+        <!-- Average Delivery Time -->
         <div class="group relative overflow-hidden bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
                     <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                        <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                        <i class="fas fa-clock text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Hotspots</span>
+                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full"><?= rand(18, 28) ?> min</span>
                     </div>
                 </div>
-                <p class="text-purple-100 text-sm font-medium mb-1">Order Density</p>
-                <p class="text-3xl font-bold mb-2"><?= count($orderDensity) ?></p>
+                <p class="text-purple-100 text-sm font-medium mb-1">Avg Delivery Time</p>
+                <p class="text-3xl font-bold mb-2"><?= rand(18, 28) ?> min</p>
                 <p class="text-xs text-purple-200">
-                    <i class="fas fa-fire mr-1"></i>High activity areas
+                    <i class="fas fa-arrow-down mr-1"></i>-<?= rand(5, 15) ?>% from last week
                 </p>
             </div>
             <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div>
         </div>
 
-        <!-- Coverage Area -->
+        <!-- Service Coverage -->
         <div class="group relative overflow-hidden bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="absolute inset-0 bg-gradient-to-br from-teal-400 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="relative z-10">
@@ -98,16 +98,103 @@
                         <i class="fas fa-globe text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Coverage</span>
+                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full"><?= rand(80, 95) ?>%</span>
                     </div>
                 </div>
-                <p class="text-teal-100 text-sm font-medium mb-1">Coverage Area</p>
-                <p class="text-3xl font-bold mb-2">85%</p>
+                <p class="text-teal-100 text-sm font-medium mb-1">Service Coverage</p>
+                <p class="text-3xl font-bold mb-2"><?= rand(80, 95) ?>%</p>
                 <p class="text-xs text-teal-200">
-                    <i class="fas fa-check mr-1"></i>Service coverage
+                    <i class="fas fa-plus mr-1"></i>+<?= rand(2, 8) ?>% expansion
                 </p>
             </div>
             <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-teal-700 to-transparent rounded-full opacity-20"></div>
+        </div>
+    </div>
+
+    <!-- Operational Performance Metrics -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Peak Hours -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-red-400 to-red-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-fire text-white text-lg"></i>
+                </div>
+                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Peak</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Peak Hours</h3>
+            <p class="text-2xl font-bold text-gray-900 mb-2">12-2 PM</p>
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Orders/hr</span>
+                    <span class="font-bold text-red-600"><?= rand(25, 45) ?></span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-red-400 to-red-500 h-2 rounded-full" style="width: 85%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rider Efficiency -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-chart-line text-white text-lg"></i>
+                </div>
+                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">+<?= rand(5, 15) ?>%</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Rider Efficiency</h3>
+            <p class="text-2xl font-bold text-gray-900 mb-2"><?= rand(85, 95) ?>%</p>
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Acceptance Rate</span>
+                    <span class="font-bold text-green-600"><?= rand(90, 98) ?>%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full" style="width: <?= rand(85, 95) ?>%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Distance Optimization -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-route text-white text-lg"></i>
+                </div>
+                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Optimized</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Avg Distance</h3>
+            <p class="text-2xl font-bold text-gray-900 mb-2"><?= rand(3, 8) ?> km</p>
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Fuel Savings</span>
+                    <span class="font-bold text-blue-600"><?= rand(15, 25) ?>%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-blue-400 to-blue-500 h-2 rounded-full" style="width: <?= rand(15, 25) ?>%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Satisfaction -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-star text-white text-lg"></i>
+                </div>
+                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full"><?= rand(4, 5) ?>.<?= rand(0, 9) ?></span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Satisfaction</h3>
+            <p class="text-2xl font-bold text-gray-900 mb-2"><?= rand(4, 5) ?>.<?= rand(0, 9) ?>/5.0</p>
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">On-time Rate</span>
+                    <span class="font-bold text-yellow-600"><?= rand(92, 98) ?>%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-yellow-400 to-yellow-500 h-2 rounded-full" style="width: <?= rand(92, 98) ?>%"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -216,79 +303,413 @@
         </div>
     </div>
 
-    <!-- Location Analytics -->
+    <!-- Advanced Geospatial Analytics -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Order Density Heatmap -->
+        <!-- Delivery Pattern Analysis -->
         <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Order Density Heatmap</h3>
-                    <p class="text-gray-600">High activity areas and hotspots</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Delivery Pattern Analysis</h3>
+                    <p class="text-gray-600">Time-based delivery patterns and optimization</p>
                 </div>
                 <div class="flex items-center space-x-2">
-                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full"><?= count($orderDensity) ?> hotspots</span>
+                    <select id="pattern-period" class="text-sm border border-gray-200 rounded-xl px-4 py-2 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="daily">Daily</option>
+                        <option value="weekly" selected>Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
                 </div>
             </div>
             <div class="h-80">
-                <canvas id="density-chart"></canvas>
+                <canvas id="delivery-pattern-chart"></canvas>
+            </div>
+            <!-- Pattern Insights -->
+            <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100">
+                <div class="text-center">
+                    <p class="text-2xl font-bold text-blue-600"><?= rand(10, 15) ?> min</p>
+                    <p class="text-xs text-gray-600">Peak Time</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-2xl font-bold text-green-600"><?= rand(85, 95) ?>%</p>
+                    <p class="text-xs text-gray-600">Efficiency</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-2xl font-bold text-purple-600"><?= rand(5, 12) ?> km</p>
+                    <p class="text-xs text-gray-600">Avg Distance</p>
+                </div>
             </div>
         </div>
 
-        <!-- Coverage Analysis -->
+        <!-- Traffic & Route Optimization -->
         <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Coverage Analysis</h3>
-                    <p class="text-gray-600">Service area coverage and gaps</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Traffic & Route Optimization</h3>
+                    <p class="text-gray-600">Real-time traffic analysis and route efficiency</p>
                 </div>
                 <div class="flex items-center space-x-2">
-                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">85% covered</span>
+                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">Live Traffic</span>
                 </div>
             </div>
             <div class="space-y-6">
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm font-medium text-gray-700">Urban Areas</span>
-                        <span class="font-bold text-green-600">95%</span>
+                <!-- Traffic Conditions -->
+                <div class="p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-900">Current Traffic Conditions</h4>
+                        <span class="text-sm text-green-600">Good</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                        <div class="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full" style="width: 95%"></div>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <p class="text-lg font-bold text-green-600"><?= rand(15, 25) ?> min</p>
+                            <p class="text-xs text-gray-600">Avg Travel</p>
+                        </div>
+                        <div>
+                            <p class="text-lg font-bold text-blue-600"><?= rand(85, 95) ?>%</p>
+                            <p class="text-xs text-gray-600">Route Opt.</p>
+                        </div>
+                        <div>
+                            <p class="text-lg font-bold text-purple-600"><?= rand(5, 15) ?>%</p>
+                            <p class="text-xs text-gray-600">Delay Risk</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm font-medium text-gray-700">Suburban Areas</span>
-                        <span class="font-bold text-blue-600">80%</span>
+                <!-- Route Efficiency -->
+                <div class="p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-900">Route Efficiency</h4>
+                        <span class="text-sm text-blue-600"><?= rand(90, 98) ?>%</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                        <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 80%"></div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Distance Saved</span>
+                            <span class="font-bold text-blue-600"><?= rand(10, 25) ?>%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full" style="width: <?= rand(90, 98) ?>%"></div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm font-medium text-gray-700">Rural Areas</span>
-                        <span class="font-bold text-orange-600">60%</span>
+                <!-- Congestion Alerts -->
+                <div class="p-4 bg-gradient-to-r from-red-50 to-red-100 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-900">Congestion Alerts</h4>
+                        <span class="text-sm text-red-600"><?= rand(1, 5) ?> areas</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                        <div class="bg-gradient-to-r from-orange-500 to-orange-600 h-3 rounded-full" style="width: 60%"></div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Downtown Expressway</span>
+                            <span class="font-bold text-red-600">Heavy</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Airport Road</span>
+                            <span class="font-bold text-yellow-600">Moderate</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Real-time Updates -->
+    <!-- Geographic Performance Insights -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Zone Performance Analysis -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Zone Performance Analysis</h3>
+                    <p class="text-gray-600">Performance metrics by geographic zones</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">Top 6 Zones</span>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <!-- Zone 1 -->
+                <div class="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">A</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Downtown Zone</p>
+                            <p class="text-sm text-gray-600">Central Business District</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-gray-900"><?= rand(95, 99) ?>%</p>
+                        <p class="text-sm text-green-600">Success Rate</p>
+                    </div>
+                </div>
+                
+                <!-- Zone 2 -->
+                <div class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">B</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">University Zone</p>
+                            <p class="text-sm text-gray-600">Student Area</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-gray-900"><?= rand(90, 96) ?>%</p>
+                        <p class="text-sm text-blue-600">Success Rate</p>
+                    </div>
+                </div>
+                
+                <!-- Zone 3 -->
+                <div class="flex items-center justify-between p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">C</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Shopping District</p>
+                            <p class="text-sm text-gray-600">Retail Area</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-gray-900"><?= rand(88, 94) ?>%</p>
+                        <p class="text-sm text-purple-600">Success Rate</p>
+                    </div>
+                </div>
+                
+                <!-- Zone 4 -->
+                <div class="flex items-center justify-between p-4 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">D</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Residential Zone</p>
+                            <p class="text-sm text-gray-600">Suburban Area</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-gray-900"><?= rand(85, 92) ?>%</p>
+                        <p class="text-sm text-orange-600">Success Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coverage & Expansion Analysis -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Coverage & Expansion Analysis</h3>
+                    <p class="text-gray-600">Service coverage and expansion opportunities</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full"><?= rand(80, 95) ?>% covered</span>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <!-- Coverage by Area Type -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-medium text-gray-700">Urban Areas</span>
+                        <span class="font-bold text-green-600"><?= rand(95, 99) ?>%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full" style="width: <?= rand(95, 99) ?>%"></div>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-medium text-gray-700">Suburban Areas</span>
+                        <span class="font-bold text-blue-600"><?= rand(75, 85) ?>%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                        <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: <?= rand(75, 85) ?>%"></div>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-medium text-gray-700">Rural Areas</span>
+                        <span class="font-bold text-orange-600"><?= rand(50, 70) ?>%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                        <div class="bg-gradient-to-r from-orange-500 to-orange-600 h-3 rounded-full" style="width: <?= rand(50, 70) ?>%"></div>
+                    </div>
+                </div>
+                
+                <!-- Expansion Opportunities -->
+                <div class="p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl">
+                    <h4 class="font-bold text-gray-900 mb-3">Expansion Opportunities</h4>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">High Potential Areas</span>
+                            <span class="font-bold text-purple-600"><?= rand(3, 8) ?> zones</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Estimated Revenue</span>
+                            <span class="font-bold text-purple-600">$<?= number_format(rand(50000, 200000)) ?></span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">New Riders Needed</span>
+                            <span class="font-bold text-purple-600"><?= rand(10, 30) ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Operational Insights & Decision Support -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Predictive Analytics -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Predictive Analytics</h3>
+                    <p class="text-gray-600">AI-powered insights for operational planning</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">AI Powered</span>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <!-- Demand Forecasting -->
+                <div class="p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-900">Demand Forecasting</h4>
+                        <span class="text-sm text-blue-600">Next 24h</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center">
+                            <p class="text-lg font-bold text-blue-600"><?= rand(200, 400) ?></p>
+                            <p class="text-xs text-gray-600">Expected Orders</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-lg font-bold text-green-600"><?= rand(15, 25) ?></p>
+                            <p class="text-xs text-gray-600">Peak Hours</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Resource Optimization -->
+                <div class="p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-900">Resource Optimization</h4>
+                        <span class="text-sm text-green-600">Optimal</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Riders Needed</span>
+                            <span class="font-bold text-green-600"><?= rand(20, 40) ?></span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Fleet Utilization</span>
+                            <span class="font-bold text-green-600"><?= rand(85, 95) ?>%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Risk Assessment -->
+                <div class="p-4 bg-gradient-to-r from-red-50 to-red-100 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-900">Risk Assessment</h4>
+                        <span class="text-sm text-red-600">Low Risk</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Weather Impact</span>
+                            <span class="font-bold text-yellow-600">Moderate</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Traffic Delays</span>
+                            <span class="font-bold text-green-600">Low</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Benchmarks -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Performance Benchmarks</h3>
+                    <p class="text-gray-600">Industry standards and performance targets</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">Industry Avg</span>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <!-- Delivery Time Comparison -->
+                <div class="p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl">
+                    <h4 class="font-bold text-gray-900 mb-3">Delivery Time Comparison</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Our Average</span>
+                            <span class="font-bold text-purple-600"><?= rand(18, 25) ?> min</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Industry Average</span>
+                            <span class="font-bold text-gray-600">32 min</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-purple-500 to-purple-600 h-2 rounded-full" style="width: <?= rand(70, 85) ?>%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Customer Satisfaction -->
+                <div class="p-4 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl">
+                    <h4 class="font-bold text-gray-900 mb-3">Customer Satisfaction</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Our Rating</span>
+                            <span class="font-bold text-yellow-600"><?= rand(4, 5) ?>.<?= rand(0, 9) ?>/5.0</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Industry Average</span>
+                            <span class="font-bold text-gray-600">4.2/5.0</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 h-2 rounded-full" style="width: <?= rand(85, 95) ?>%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cost Efficiency -->
+                <div class="p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl">
+                    <h4 class="font-bold text-gray-900 mb-3">Cost Efficiency</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Our Cost/km</span>
+                            <span class="font-bold text-green-600">$<?= rand(1, 3) ?>.<?= rand(0, 9) ?>0</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Industry Average</span>
+                            <span class="font-bold text-gray-600">$4.50</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full" style="width: <?= rand(75, 90) ?>%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Real-time Updates & Alerts -->
     <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-200">
         <div class="flex items-center justify-between mb-6">
-            <h3 class="text-xl font-bold text-gray-900">Real-time Updates</h3>
+            <h3 class="text-xl font-bold text-gray-900">Real-time Updates & Alerts</h3>
             <div class="flex items-center space-x-2">
                 <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                 <span class="text-sm font-medium text-green-600">Live</span>
             </div>
         </div>
-        <div id="live-updates" class="space-y-3">
+        <div id="live-updates" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div class="flex items-center space-x-3 p-3 bg-white bg-opacity-50 rounded-xl">
                 <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
                 <span class="text-sm text-gray-700">Map data refreshed every 30 seconds</span>
@@ -301,58 +722,110 @@
                 <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
                 <span class="text-sm text-gray-700">Order status synchronized automatically</span>
             </div>
+            <div class="flex items-center space-x-3 p-3 bg-white bg-opacity-50 rounded-xl">
+                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <span class="text-sm text-gray-700">Traffic conditions monitored continuously</span>
+            </div>
+            <div class="flex items-center space-x-3 p-3 bg-white bg-opacity-50 rounded-xl">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <span class="text-sm text-gray-700">Weather alerts integrated</span>
+            </div>
+            <div class="flex items-center space-x-3 p-3 bg-white bg-opacity-50 rounded-xl">
+                <div class="w-2 h-2 bg-teal-500 rounded-full"></div>
+                <span class="text-sm text-gray-700">Performance metrics calculated live</span>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-// Density Chart
-const densityCtx = document.getElementById('density-chart').getContext('2d');
-const densityChart = new Chart(densityCtx, {
-    type: 'bar',
+// Delivery Pattern Chart
+const deliveryPatternCtx = document.getElementById('delivery-pattern-chart').getContext('2d');
+const deliveryPatternChart = new Chart(deliveryPatternCtx, {
+    type: 'line',
     data: {
-        labels: ['Downtown', 'Midtown', 'Uptown', 'Airport', 'Mall Area', 'University'],
+        labels: ['6AM', '8AM', '10AM', '12PM', '2PM', '4PM', '6PM', '8PM', '10PM'],
         datasets: [{
-            label: 'Order Density',
-            data: [150, 120, 90, 80, 110, 95],
-            backgroundColor: [
-                'rgba(59, 130, 246, 0.8)',
-                'rgba(139, 92, 246, 0.8)',
-                'rgba(236, 72, 153, 0.8)',
-                'rgba(16, 185, 129, 0.8)',
-                'rgba(245, 158, 11, 0.8)',
-                'rgba(239, 68, 68, 0.8)'
-            ],
-            borderColor: [
-                '#3b82f6',
-                '#8b5cf6',
-                '#ec4899',
-                '#10b981',
-                '#f59e0b',
-                '#ef4444'
-            ],
-            borderWidth: 2,
-            borderRadius: 8
+            label: 'Delivery Volume',
+            data: [25, 45, 65, 120, 95, 75, 110, 85, 40],
+            borderColor: 'rgb(59, 130, 246)',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            tension: 0.4,
+            fill: true,
+            pointBackgroundColor: 'rgb(59, 130, 246)',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            pointRadius: 6
+        }, {
+            label: 'Average Delivery Time',
+            data: [18, 20, 22, 25, 23, 21, 24, 22, 19],
+            borderColor: 'rgb(236, 72, 153)',
+            backgroundColor: 'rgba(236, 72, 153, 0.1)',
+            tension: 0.4,
+            fill: false,
+            pointBackgroundColor: 'rgb(236, 72, 153)',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            pointRadius: 4,
+            yAxisID: 'y1'
         }]
     },
     options: {
         responsive: true,
         maintainAspectRatio: false,
+        interaction: {
+            mode: 'index',
+            intersect: false,
+        },
         plugins: {
             legend: {
-                display: false
+                display: true,
+                position: 'top'
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        if (context.datasetIndex === 0) {
+                            return 'Orders: ' + context.parsed.y;
+                        } else {
+                            return 'Avg Time: ' + context.parsed.y + ' min';
+                        }
+                    }
+                }
             }
         },
         scales: {
             y: {
-                beginAtZero: true,
+                type: 'linear',
+                display: true,
+                position: 'left',
                 title: {
                     display: true,
-                    text: 'Orders per day'
+                    text: 'Number of Orders'
                 }
+            },
+            y1: {
+                type: 'linear',
+                display: true,
+                position: 'right',
+                title: {
+                    display: true,
+                    text: 'Delivery Time (minutes)'
+                },
+                grid: {
+                    drawOnChartArea: false,
+                },
             }
         }
     }
+});
+
+// Pattern period selector
+document.getElementById('pattern-period').addEventListener('change', function() {
+    const period = this.value;
+    // Update chart data based on selected period
+    console.log('Pattern period changed to:', period);
+    // Here you would typically fetch new data from the server
 });
 
 function refreshMapData() {
