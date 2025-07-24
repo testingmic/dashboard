@@ -163,27 +163,29 @@ const OverviewHandler = {
                 datasets: [{
                     label: 'Revenue',
                     data: [42000, 48000, 52000, 58000, 62000, 68000, 72000, 78000, 82000, 88000, 92000, 98000],
-                    borderColor: 'rgb(59, 130, 246)',
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderColor: '#ec4899', // Pink
+                    backgroundColor: 'rgba(236, 72, 153, 0.2)',
                     tension: 0.4,
                     fill: true,
-                    pointBackgroundColor: 'rgb(59, 130, 246)',
-                    pointBorderColor: '#fff',
-                    pointBorderWidth: 2,
-                    pointRadius: 6,
-                    pointHoverRadius: 8
+                    pointBackgroundColor: '#ec4899',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 3,
+                    pointRadius: 8,
+                    pointHoverRadius: 12,
+                    borderWidth: 3
                 }, {
                     label: 'Orders',
                     data: [850, 920, 980, 1050, 1120, 1180, 1250, 1320, 1380, 1450, 1520, 1580],
-                    borderColor: 'rgb(236, 72, 153)',
-                    backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                    borderColor: '#06b6d4', // Cyan
+                    backgroundColor: 'rgba(6, 182, 212, 0.1)',
                     tension: 0.4,
                     fill: false,
-                    pointBackgroundColor: 'rgb(236, 72, 153)',
-                    pointBorderColor: '#fff',
-                    pointBorderWidth: 2,
-                    pointRadius: 4,
-                    pointHoverRadius: 6,
+                    pointBackgroundColor: '#06b6d4',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 3,
+                    pointRadius: 6,
+                    pointHoverRadius: 10,
+                    borderWidth: 3,
                     yAxisID: 'y1'
                 }]
             },
@@ -200,10 +202,21 @@ const OverviewHandler = {
                         position: 'top',
                         labels: {
                             usePointStyle: true,
-                            padding: 20
+                            padding: 20,
+                            color: '#ffffff',
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
                         }
                     },
                     tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        borderColor: '#ec4899',
+                        borderWidth: 2,
+                        cornerRadius: 12,
                         callbacks: {
                             label: function(context) {
                                 if (context.datasetIndex === 0) {
@@ -222,15 +235,21 @@ const OverviewHandler = {
                         position: 'left',
                         title: {
                             display: true,
-                            text: 'Revenue ($)'
+                            text: 'Revenue ($)',
+                            color: '#ffffff',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
                         },
                         ticks: {
+                            color: '#ffffff',
                             callback: function(value) {
                                 return '$' + (value / 1000) + 'k';
                             }
                         },
                         grid: {
-                            color: 'rgba(0, 0, 0, 0.05)'
+                            color: 'rgba(255, 255, 255, 0.1)'
                         }
                     },
                     y1: {
@@ -239,12 +258,18 @@ const OverviewHandler = {
                         position: 'right',
                         title: {
                             display: true,
-                            text: 'Orders'
+                            text: 'Orders',
+                            color: '#ffffff',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
                         },
                         grid: {
                             drawOnChartArea: false,
                         },
                         ticks: {
+                            color: '#ffffff',
                             callback: function(value) {
                                 return value.toLocaleString();
                             }
@@ -252,7 +277,10 @@ const OverviewHandler = {
                     },
                     x: {
                         grid: {
-                            color: 'rgba(0, 0, 0, 0.05)'
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#ffffff'
                         }
                     }
                 }
@@ -270,19 +298,19 @@ const OverviewHandler = {
                 datasets: [{
                     data: [65, 20, 12, 3],
                     backgroundColor: [
-                        'rgba(16, 185, 129, 0.8)',
-                        'rgba(245, 158, 11, 0.8)',
-                        'rgba(59, 130, 246, 0.8)',
-                        'rgba(239, 68, 68, 0.8)'
+                        'rgba(34, 197, 94, 0.8)', // Green
+                        'rgba(245, 158, 11, 0.8)', // Orange
+                        'rgba(59, 130, 246, 0.8)', // Blue
+                        'rgba(239, 68, 68, 0.8)'  // Red
                     ],
                     borderColor: [
-                        '#10b981',
+                        '#22c55e',
                         '#f59e0b',
                         '#3b82f6',
                         '#ef4444'
                     ],
-                    borderWidth: 2,
-                    hoverOffset: 4
+                    borderWidth: 3,
+                    hoverOffset: 8
                 }]
             },
             options: {
@@ -294,12 +322,20 @@ const OverviewHandler = {
                         labels: {
                             usePointStyle: true,
                             padding: 20,
+                            color: '#ffffff',
                             font: {
-                                size: 12
+                                size: 12,
+                                weight: 'bold'
                             }
                         }
                     },
                     tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        borderColor: '#ec4899',
+                        borderWidth: 2,
+                        cornerRadius: 12,
                         callbacks: {
                             label: function(context) {
                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);

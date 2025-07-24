@@ -1,120 +1,120 @@
 <!-- Dashboard Overview -->
 <div class="space-y-8">
     <!-- Page Header with Gradient -->
-    <div class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 rounded-2xl p-8 text-white">
-        <div class="absolute inset-0 bg-black opacity-10"></div>
+    <div class="relative overflow-hidden bg-gradient-to-r from-purple-900 via-blue-900 to-indigo-900 rounded-2xl p-8 text-white shadow-2xl">
+        <div class="absolute inset-0 bg-gradient-to-br from-pink-500/20 via-purple-500/20 to-blue-500/20"></div>
         <div class="relative z-10">
             <div class="flex items-center justify-between">
                 <div>
-                    <h2 class="text-3xl font-bold mb-2">Dashboard Overview</h2>
-                    <p class="text-blue-100 text-lg">Monitor your delivery platform performance in real-time</p>
+                    <h2 class="text-3xl font-bold mb-2 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Dashboard Overview</h2>
+                    <p class="text-gray-300 text-lg">Monitor your delivery platform performance in real-time</p>
                 </div>
             </div>
         </div>
         <!-- Decorative elements -->
-        <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full -translate-y-16 translate-x-16"></div>
-        <div class="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-5 rounded-full translate-y-12 -translate-x-12"></div>
+        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-400 to-purple-400 opacity-20 rounded-full -translate-y-16 translate-x-16 animate-pulse"></div>
+        <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-400 opacity-20 rounded-full translate-y-12 -translate-x-12 animate-pulse" style="animation-delay: -2s;"></div>
     </div>
 
     <!-- KPI Cards with Enhanced Design -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Total Orders Today -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 rounded-2xl p-6 text-white shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 backdrop-blur-sm border border-white/10">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/50 via-purple-500/50 to-pink-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-400 rounded-xl flex items-center justify-center backdrop-blur-sm shadow-lg">
                         <i class="fas fa-shopping-cart text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">+12%</span>
+                        <span class="text-xs bg-gradient-to-r from-green-400 to-green-500 px-3 py-1 rounded-full font-semibold shadow-lg">+12%</span>
                     </div>
                 </div>
-                <p class="text-blue-100 text-sm font-medium mb-1">Orders Today</p>
-                <p class="text-3xl font-bold mb-2"><?= number_format($kpis['orders_today']) ?></p>
-                <p class="text-xs text-blue-200">
+                <p class="text-blue-200 text-sm font-medium mb-1">Orders Today</p>
+                <p class="text-4xl font-bold mb-2 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent"><?= number_format($kpis['orders_today']) ?></p>
+                <p class="text-xs text-blue-300">
                     <i class="fas fa-arrow-up mr-1"></i>+12% from yesterday
                 </p>
             </div>
             <!-- Decorative gradient overlay -->
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-blue-700 to-transparent rounded-full opacity-20"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-pink-500/30 to-transparent rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
         </div>
 
         <!-- Active Users -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-pink-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-pink-600 via-purple-600 to-blue-600 rounded-2xl p-6 text-white shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 backdrop-blur-sm border border-white/10">
+            <div class="absolute inset-0 bg-gradient-to-br from-pink-500/50 via-purple-500/50 to-blue-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-purple-400 rounded-xl flex items-center justify-center backdrop-blur-sm shadow-lg">
                         <i class="fas fa-users text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">+8%</span>
+                        <span class="text-xs bg-gradient-to-r from-green-400 to-green-500 px-3 py-1 rounded-full font-semibold shadow-lg">+8%</span>
                     </div>
                 </div>
-                <p class="text-pink-100 text-sm font-medium mb-1">Active Users</p>
-                <p class="text-3xl font-bold mb-2"><?= number_format($kpis['active_users']) ?></p>
-                <p class="text-xs text-pink-200">
+                <p class="text-pink-200 text-sm font-medium mb-1">Active Users</p>
+                <p class="text-4xl font-bold mb-2 bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent"><?= number_format($kpis['active_users']) ?></p>
+                <p class="text-xs text-pink-300">
                     <i class="fas fa-arrow-up mr-1"></i>+8% from last week
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-blue-500/30 to-transparent rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
         </div>
 
         <!-- Active Riders -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-purple-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 rounded-2xl p-6 text-white shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 backdrop-blur-sm border border-white/10">
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-500/50 via-blue-500/50 to-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-blue-400 rounded-xl flex items-center justify-center backdrop-blur-sm shadow-lg">
                         <i class="fas fa-motorcycle text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Live</span>
+                        <span class="text-xs bg-gradient-to-r from-cyan-400 to-cyan-500 px-3 py-1 rounded-full font-semibold shadow-lg animate-pulse">Live</span>
                     </div>
                 </div>
-                <p class="text-purple-100 text-sm font-medium mb-1">Online Riders</p>
-                <p class="text-3xl font-bold mb-2" id="online-riders-count"><?= number_format($kpis['active_riders']) ?></p>
-                <p class="text-xs text-purple-200">
+                <p class="text-purple-200 text-sm font-medium mb-1">Online Riders</p>
+                <p class="text-4xl font-bold mb-2 bg-gradient-to-r from-white to-purple-100 bg-clip-text text-transparent" id="online-riders-count"><?= number_format($kpis['active_riders']) ?></p>
+                <p class="text-xs text-purple-300">
                     <i class="fas fa-circle mr-1 animate-pulse"></i>Real-time
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-blue-700 to-transparent rounded-full opacity-20"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-cyan-500/30 to-transparent rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
         </div>
 
         <!-- Total Revenue -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-pink-600 to-purple-700 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-yellow-500 via-orange-500 to-red-500 rounded-2xl p-6 text-white shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 backdrop-blur-sm border border-white/10">
+            <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/50 via-orange-500/50 to-red-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-xl flex items-center justify-center backdrop-blur-sm shadow-lg">
                         <i class="fas fa-dollar-sign text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">+15%</span>
+                        <span class="text-xs bg-gradient-to-r from-green-400 to-green-500 px-3 py-1 rounded-full font-semibold shadow-lg">+15%</span>
                     </div>
                 </div>
-                <p class="text-pink-100 text-sm font-medium mb-1">Total Revenue</p>
-                <p class="text-3xl font-bold mb-2">$<?= number_format($kpis['total_revenue']) ?></p>
-                <p class="text-xs text-pink-200">
+                <p class="text-yellow-200 text-sm font-medium mb-1">Total Revenue</p>
+                <p class="text-4xl font-bold mb-2 bg-gradient-to-r from-white to-yellow-100 bg-clip-text text-transparent">$<?= number_format($kpis['total_revenue']) ?></p>
+                <p class="text-xs text-yellow-300">
                     <i class="fas fa-arrow-up mr-1"></i>+15% this month
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-red-500/30 to-transparent rounded-full opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
         </div>
     </div>
 
     <!-- Enhanced Analytics Charts Section -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Revenue Trend Chart -->
-        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900/80 via-purple-900/80 to-blue-900/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 p-8 hover:shadow-3xl transition-all duration-300 text-white">
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Revenue Analytics</h3>
-                    <p class="text-gray-600">Revenue trends and growth patterns</p>
+                    <h3 class="text-xl font-bold bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent mb-2">Revenue Analytics</h3>
+                    <p class="text-gray-300">Revenue trends and growth patterns</p>
                 </div>
                 <div class="flex items-center space-x-2">
-                    <select id="revenue-period" class="text-sm border border-gray-200 rounded-xl px-4 py-2 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <select id="revenue-period" class="text-sm bg-gray-800/50 border border-white/20 rounded-xl px-4 py-2 text-white focus:ring-2 focus:ring-pink-500 focus:border-pink-500 backdrop-blur-sm">
                         <option value="7">Last 7 days</option>
                         <option value="30" selected>Last 30 days</option>
                         <option value="90">Last 90 days</option>
@@ -125,49 +125,49 @@
                 <canvas id="revenue-chart"></canvas>
             </div>
             <!-- Revenue Insights -->
-            <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100">
+            <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
                 <div class="text-center">
-                    <p class="text-2xl font-bold text-green-600">+15.2%</p>
-                    <p class="text-xs text-gray-600">Growth Rate</p>
+                    <p class="text-2xl font-bold bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent">+15.2%</p>
+                    <p class="text-xs text-gray-400">Growth Rate</p>
                 </div>
                 <div class="text-center">
-                    <p class="text-2xl font-bold text-blue-600">$2,847</p>
-                    <p class="text-xs text-gray-600">Avg Daily</p>
+                    <p class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">$2,847</p>
+                    <p class="text-xs text-gray-400">Avg Daily</p>
                 </div>
                 <div class="text-center">
-                    <p class="text-2xl font-bold text-purple-600">$85,410</p>
-                    <p class="text-xs text-gray-600">Monthly Total</p>
+                    <p class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-purple-500 bg-clip-text text-transparent">$85,410</p>
+                    <p class="text-xs text-gray-400">Monthly Total</p>
                 </div>
             </div>
         </div>
 
         <!-- Order Analytics Chart -->
-        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900/80 via-purple-900/80 to-blue-900/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/10 p-8 hover:shadow-3xl transition-all duration-300 text-white">
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Order Analytics</h3>
-                    <p class="text-gray-600">Order volume and status distribution</p>
+                    <h3 class="text-xl font-bold bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent mb-2">Order Analytics</h3>
+                    <p class="text-gray-300">Order volume and status distribution</p>
                 </div>
                 <div class="flex items-center space-x-2">
-                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">Total: <?= number_format($kpis['orders_today'] + $kpis['orders_in_progress'] + $kpis['orders_completed']) ?></span>
+                    <span class="text-sm text-gray-300 bg-gradient-to-r from-pink-500/20 to-purple-500/20 px-3 py-1 rounded-full border border-white/10">Total: <?= number_format($kpis['orders_today'] + $kpis['orders_in_progress'] + $kpis['orders_completed']) ?></span>
                 </div>
             </div>
             <div class="h-80">
                 <canvas id="order-status-chart"></canvas>
             </div>
             <!-- Order Insights -->
-            <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100">
+            <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
                 <div class="text-center">
-                    <p class="text-2xl font-bold text-blue-600"><?= number_format($kpis['orders_today']) ?></p>
-                    <p class="text-xs text-gray-600">Today</p>
+                    <p class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent"><?= number_format($kpis['orders_today']) ?></p>
+                    <p class="text-xs text-gray-400">Today</p>
                 </div>
                 <div class="text-center">
-                    <p class="text-2xl font-bold text-orange-600"><?= number_format($kpis['orders_in_progress']) ?></p>
-                    <p class="text-xs text-gray-600">In Progress</p>
+                    <p class="text-2xl font-bold bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent"><?= number_format($kpis['orders_in_progress']) ?></p>
+                    <p class="text-xs text-gray-400">In Progress</p>
                 </div>
                 <div class="text-center">
-                    <p class="text-2xl font-bold text-green-600"><?= number_format($kpis['orders_completed']) ?></p>
-                    <p class="text-xs text-gray-600">Completed</p>
+                    <p class="text-2xl font-bold bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent"><?= number_format($kpis['orders_completed']) ?></p>
+                    <p class="text-xs text-gray-400">Completed</p>
                 </div>
             </div>
         </div>
@@ -638,7 +638,7 @@
                 View All Riders
             </a>
         </div>
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border border-blue-200 hover:shadow-lg transition-all duration-300">
             <table class="w-full">
                 <thead>
                     <tr class="border-b border-gray-200">
