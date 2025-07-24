@@ -48,6 +48,13 @@
                 }
             });
 
+            // Global function to close mobile sidebar
+            window.closeMobileSidebar = function() {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('open');
+                document.body.classList.remove('sidebar-open');
+            };
+
             // User menu dropdown
             if (userMenuButton && userMenuDropdown) {
                 userMenuButton.addEventListener('click', function() {
