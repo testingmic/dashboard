@@ -5,27 +5,15 @@ namespace App\Controllers;
 use App\Models\UsersModel;
 use App\Models\AccessModel;
 use App\Models\AuthModel;
-use App\Libraries\Routing;
 use App\Libraries\Caching;
-use App\Models\CategoriesModel;
-use App\Models\TagsModel;
-use App\Models\CoursesModel;
-use App\Models\InstructorsModel;
-use App\Models\ReviewsModel;
-use App\Models\WishlistModel;
-use App\Models\EnrollmentsModel;
-use App\Models\NotesModel;
-use App\Models\DiscussionsModel;
 use App\Models\ResourcesModel;
 use App\Controllers\Analytics\Analytics;
 use App\Models\SupportModel;
-use App\Models\TestimonialsModel;
-use App\Models\ClassesModel;
 use App\Models\MessagesModel;
 
 class LoadController extends BaseController
 {
-    public $restrictedDomain = ['e-learning.com', 'e-learning.com'];
+    public $restrictedDomain = ['wekada.com', 'api.wekada.com', 'logs.wekada.com', 'dashboard.wekada.com'];
     
     protected $usersModel;
     protected $accessModel;
@@ -80,18 +68,7 @@ class LoadController extends BaseController
         
         // Define a mapping of model names to their corresponding model classes
         $modelMap = [
-            'categories' => CategoriesModel::class,
-            'tags' => TagsModel::class,
-            'testimonials' => TestimonialsModel::class,
-            'courses' => CoursesModel::class,
-            'instructors' => InstructorsModel::class,
-            'wishlist' => WishlistModel::class,
-            'reviews' => ReviewsModel::class,
-            'enrollments' => EnrollmentsModel::class,
-            'notes' => NotesModel::class,
-            'discussions' => DiscussionsModel::class,
-            'classes' => ClassesModel::class,
-            'support' => supportModel::class,
+            'support' => SupportModel::class,
             'resources' => ResourcesModel::class,
             'messages' => MessagesModel::class
         ];
@@ -103,23 +80,6 @@ class LoadController extends BaseController
                 $this->{$propertyName} = !empty($this->{$propertyName}) ? $this->{$propertyName} : new $modelMap[$modelName]();
             }
         }
-
-        // initialize the enrollments model
-        if(in_array($model, ['courses'])) {
-            $this->enrollmentsModel = new EnrollmentsModel();
-        }
-    }
-
-    /**
-     * Tracking in progress
-     * 
-     * @return array
-     */
-    public function trackingInProgress() {
-        return Routing::success([], [
-            'status' => dataTrackingStatuses('begin'),
-            'timeToGo' => $this->accountStatus
-        ]);
     }
 
 }
