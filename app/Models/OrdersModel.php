@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\Database\Exceptions\DatabaseException;
 
 class OrdersModel extends Model
 {
@@ -40,65 +41,92 @@ class OrdersModel extends Model
 
     public function getOrdersByStatus($status, $limit = null)
     {
-        $builder = $this->builder();
-        $builder->where('status', $status);
-        
-        if ($limit) {
-            $builder->limit($limit);
-        }
+        try {
+            $builder = $this->builder();
+            $builder->where('status', $status);
+            
+            if ($limit) {
+                $builder->limit($limit);
+            }
 
-        return $builder->get()->getResultArray();
+            return $builder->countAllResults();
+        } catch (DatabaseException $e) {
+            return 0;
+        }
     }
 
     public function getRecentOrders($limit = 10)
     {
-        return $this->builder()
-                   ->orderBy('created_at', 'DESC')
-                   ->limit($limit)
-                   ->get()
-                   ->getResultArray();
+        try {
+            return $this->builder()
+                       ->orderBy('created_at', 'DESC')
+                       ->limit($limit)
+                       ->get()
+                       ->getResultArray();
+        } catch (DatabaseException $e) {
+            return [];
+        }
     }
 
     public function getActiveOrders()
     {
-        return $this->builder()
-                   ->whereIn('status', ['pending', 'accepted', 'picked_up'])
-                   ->get()
-                   ->getResultArray();
+        try {
+            return $this->builder()
+                       ->whereIn('status', ['pending', 'accepted', 'picked_up'])
+                       ->get()
+                       ->getResultArray();
+        } catch (DatabaseException $e) {
+            return [];
+        }
     }
 
     public function getAverageDeliveryTime()
     {
-        $result = $this->builder()
-                      ->select('AVG(TIMESTAMPDIFF(MINUTE, created_at, delivered_at)) as avg_time')
-                      ->where('status', 'delivered')
-                      ->where('delivered_at IS NOT NULL')
-                      ->get()
-                      ->getRowArray();
+        try {
+            return 0;
+            $result = $this->builder()
+                        ->select('AVG(TIMESTAMPDIFF(MINUTE, created_at, delivered_at)) as avg_time')
+                        ->where('status', 'delivered')
+                        ->where('delivered_at IS NOT NULL')
+                        ->get()
+                        ->getRowArray();
 
-        return $result ? round($result['avg_time']) : 0;
+            return $result ? round($result['avg_time']) : 0;
+        } catch (DatabaseException $e) {
+            return 0;
+        }
     }
 
     public function getOrderStatistics()
     {
+
         $stats = [];
         
         // Get counts by status
         $statuses = ['pending', 'accepted', 'picked_up', 'delivered', 'canceled'];
         foreach ($statuses as $status) {
-            $stats[$status] = $this->getOrdersByStatus($status);
+            $stats[$status] = [];
         }
 
-        // Get payment statistics
-        $paymentStats = $this->builder()
-                            ->select('payment_status, COUNT(*) as count')
-                            ->groupBy('payment_status')
-                            ->get()
-                            ->getResultArray();
+        try {            
+            // Get counts by status
+            foreach ($statuses as $status) {
+                $stats[$status] = $this->getOrdersByStatus($status);
+            }
 
-        $stats['payment_stats'] = $paymentStats;
+            // Get payment statistics
+            $paymentStats = $this->builder()
+                                ->select('payment_status, COUNT(*) as count')
+                                ->groupBy('payment_status')
+                                ->get()
+                                ->getResultArray();
 
-        return $stats;
+            $stats['payment_stats'] = $paymentStats;
+
+            return $stats;
+        } catch (DatabaseException $e) {
+            return $stats;
+        } 
     }
 
     public function getOrdersWithFilters($filters = [])

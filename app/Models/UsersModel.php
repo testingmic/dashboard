@@ -97,6 +97,26 @@ class UsersModel extends Model {
     }
 
     /**
+     * Get active users count
+     * 
+     * @param string|null $startDate
+     * @param string|null $endDate
+     * @return int
+     */
+    public function getActiveUsersCount($startDate = null, $endDate = null) {
+        $builder = $this->builder();
+        
+        if ($startDate && $endDate) {
+            $builder->where('created_at >=', $startDate)
+                   ->where('created_at <=', $endDate);
+        } elseif ($startDate) {
+            $builder->where('DATE(created_at)', $startDate);
+        }
+
+        return $builder->countAllResults();
+    }
+
+    /**
      * Global find
      * 
      * @param array $data

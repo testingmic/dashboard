@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\Database\Exceptions\DatabaseException;
 
 class FeedbackModel extends Model
 {
@@ -51,12 +52,16 @@ class FeedbackModel extends Model
 
     public function getAverageRating()
     {
-        $result = $this->builder()
-                      ->select('AVG(rating) as avg_rating')
-                      ->get()
-                      ->getRowArray();
+        try {
+            $result = $this->builder()
+                        ->select('AVG(rating) as avg_rating')
+                        ->get()
+                        ->getRowArray();
 
-        return $result ? round($result['avg_rating'], 1) : 0;
+            return $result ? round($result['avg_rating'], 1) : 0;
+        } catch (DatabaseException $e) {
+            return 0;
+        } 
     }
 
     public function getNegativeFeedbackCount()

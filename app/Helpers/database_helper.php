@@ -5,21 +5,6 @@ use CodeIgniter\Database\Exceptions\DatabaseException;
 
 // Create the databases
 $databases = [
-    "CREATE TABLE IF NOT EXISTS categories (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name VARCHAR(255) NOT NULL,
-        name_slug VARCHAR(255) NOT NULL,
-        description TEXT,
-        image TEXT,
-        icon TEXT,
-        parent_id INTEGER DEFAULT 0,
-        preferred_order INTEGER DEFAULT 0,
-        coursesCount INTEGER DEFAULT 0,
-        created_by INTEGER DEFAULT 0,
-        status VARCHAR(255) DEFAULT 'Active',
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );",
     "CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username VARCHAR(255) NOT NULL,
@@ -61,127 +46,76 @@ $databases = [
     CREATE INDEX IF NOT EXISTS idx_users_email ON users (email);
     CREATE INDEX IF NOT EXISTS idx_users_status ON users (status);
     CREATE INDEX IF NOT EXISTS idx_users_user_type ON users (user_type);",
-    "CREATE TABLE IF NOT EXISTS user_token_auth (
-        idusertokenauth INTEGER PRIMARY KEY AUTOINCREMENT,
-        login TEXT,
-        description TEXT,
-        password TEXT UNIQUE,
-        hash_algo TEXT,
-        system_token INTEGER NOT NULL DEFAULT 0,
-        last_used DATETIME DEFAULT NULL,
-        date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
-        date_expired DATETIME DEFAULT CURRENT_TIMESTAMP,
-        ipaddress TEXT DEFAULT NULL
-    );
-    CREATE INDEX IF NOT EXISTS idx_user_token_auth_login ON user_token_auth (login);",
-    "CREATE TABLE IF NOT EXISTS notifications (
+    "CREATE TABLE IF NOT EXISTS orders (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER DEFAULT 0,
-        title TEXT DEFAULT '',
-        description TEXT DEFAULT '',
-        link TEXT DEFAULT '',
-        read TEXT DEFAULT 'no',
-        section TEXT DEFAULT '',
-        created_by INTEGER DEFAULT 0,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
-    CREATE INDEX IF NOT EXISTS idx_notifications_user_id ON notifications (user_id);",
-    "CREATE TABLE IF NOT EXISTS activities (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER DEFAULT 0,
-        activity_type TEXT DEFAULT '',
-        section TEXT DEFAULT '',
-        content TEXT DEFAULT '',
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
-    CREATE INDEX IF NOT EXISTS idx_activities_user_id ON activities (user_id);
-    CREATE INDEX IF NOT EXISTS idx_activities_activity_type ON activities (activity_type);
-    CREATE INDEX IF NOT EXISTS idx_activities_section ON activities (section);",
-    "CREATE TABLE IF NOT EXISTS resources (
-        media_id INTEGER PRIMARY KEY,
+        order_id VARCHAR(255) NOT NULL,
         user_id INTEGER NOT NULL,
-        record_id INTEGER NOT NULL,
-        section TEXT NOT NULL,
-        media TEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        rider_id INTEGER NOT NULL,
+        pickup_location TEXT NOT NULL,
+        delivery_location TEXT NOT NULL,
+        pickup_lat REAL NOT NULL,
+        pickup_lng REAL NOT NULL,
+        delivery_lat REAL NOT NULL,
+        delivery_lng REAL NOT NULL,
+        amount REAL NOT NULL,
+        status VARCHAR(255) NOT NULL,
+        payment_status VARCHAR(255) NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        picked_at DATETIME DEFAULT NULL,
+        delivered_at DATETIME DEFAULT NULL,
+        canceled_at DATETIME DEFAULT NULL,
+        cancel_reason TEXT DEFAULT ''
     );
-    CREATE INDEX IF NOT EXISTS user_id ON resources (user_id);
-    CREATE INDEX IF NOT EXISTS record_id ON resources (record_id);
-    CREATE INDEX IF NOT EXISTS section ON resources (section);",
+    CREATE INDEX IF NOT EXISTS idx_orders_order_id ON orders (order_id);
+    CREATE INDEX IF NOT EXISTS idx_orders_user_id ON orders (user_id);
+    CREATE INDEX IF NOT EXISTS idx_orders_rider_id ON orders (rider_id);",
 
-    "CREATE TABLE IF NOT EXISTS support_categories (
+    "CREATE TABLE IF NOT EXISTS riders (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT DEFAULT '',
-        name_slug TEXT DEFAULT '',
-        icon TEXT DEFAULT '',
-        parent_id INTEGER DEFAULT 0,
-        created_by INTEGER DEFAULT 0,
-        status VARCHAR(255) DEFAULT 'Active',
-        image TEXT DEFAULT '',
-        description TEXT DEFAULT '',
+        rider_id VARCHAR(255) NOT NULL,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        phone TEXT NOT NULL,
+        vehicle_type TEXT NOT NULL,
+        vehicle_number TEXT NOT NULL,
+        current_lat REAL NOT NULL,
+        current_lng REAL NOT NULL,
+        status VARCHAR(255) NOT NULL,
+        is_online INTEGER DEFAULT 0,
+        rating INTEGER DEFAULT 0,
+        total_deliveries INTEGER DEFAULT 0,
+        total_earnings REAL DEFAULT 0,
+        acceptance_rate REAL DEFAULT 0,
+        completion_rate REAL DEFAULT 0,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        last_active DATETIME DEFAULT NULL,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );",
+    );
+    CREATE INDEX IF NOT EXISTS idx_riders_rider_id ON riders (rider_id);
+    CREATE INDEX IF NOT EXISTS idx_riders_email ON riders (email);
+    CREATE INDEX IF NOT EXISTS idx_riders_phone ON riders (phone);
+    CREATE INDEX IF NOT EXISTS idx_riders_status ON riders (status);",
 
-    "CREATE TABLE IF NOT EXISTS support (
+    "CREATE TABLE IF NOT EXISTS revenue (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT DEFAULT '',
-        title_slug TEXT DEFAULT '',
-        description TEXT DEFAULT '',
-        content TEXT DEFAULT '',
-        thumbnail TEXT DEFAULT '',
-        image TEXT DEFAULT '',
-        tags TEXT DEFAULT '',
-        viewsCount INTEGER DEFAULT 0,
-        writer TEXT DEFAULT '',
-        sharesCount INTEGER DEFAULT 0,
-        status VARCHAR(255) DEFAULT 'Active',
-        category_id INTEGER DEFAULT 0,
-        subcategory_id INTEGER DEFAULT 0,
-        created_by INTEGER DEFAULT 0,
+        order_id VARCHAR(255) NOT NULL,
+        amount REAL NOT NULL,
+        commission REAL NOT NULL,
+        rider_payout REAL NOT NULL,
+        platform_fee REAL NOT NULL,
+        payment_method VARCHAR(255) NOT NULL,
+        status VARCHAR(255) NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        processed_at DATETIME DEFAULT NULL,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
-    CREATE INDEX IF NOT EXISTS idx_support_category_id ON support (category_id);
-    CREATE INDEX IF NOT EXISTS idx_support_created_by ON support (created_by);",
-    "CREATE TABLE IF NOT EXISTS support_contacts (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT DEFAULT '',
-        email TEXT DEFAULT '',
-        phone TEXT DEFAULT '',
-        subject TEXT DEFAULT '',
-        message TEXT DEFAULT '',
-        category_id INTEGER DEFAULT 0,
-        request_type TEXT DEFAULT 'contact',
-        organization TEXT DEFAULT '',
-        project_type TEXT DEFAULT '',
-        project_title TEXT DEFAULT '',
-        privacy_policy TEXT DEFAULT 'yes',
-        budget TEXT DEFAULT '',
-        created_by INTEGER DEFAULT 0,
-        timeline TEXT DEFAULT '',
-        attachments TEXT DEFAULT '',
-        repliesCount INTEGER DEFAULT 0,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
-    CREATE INDEX IF NOT EXISTS idx_support_contacts_email ON support_contacts (email);",
-    "CREATE TABLE IF NOT EXISTS support_contacts_replies (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        contact_id INTEGER,
-        message TEXT DEFAULT '',
-        created_by INTEGER DEFAULT 0,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
-    CREATE INDEX IF NOT EXISTS idx_support_contacts_replies_contact_id ON support_contacts_replies (contact_id);
-    CREATE INDEX IF NOT EXISTS idx_support_contacts_replies_created_by ON support_contacts_replies (created_by);",
+    CREATE INDEX IF NOT EXISTS idx_revenue_order_id ON revenue (order_id);
+    CREATE INDEX IF NOT EXISTS idx_revenue_payment_method ON revenue (payment_method);
+    CREATE INDEX IF NOT EXISTS idx_revenue_status ON revenue (status);"
 ];
 
 $alterTables = [
-    // "ALTER TABLE support_contacts ADD COLUMN created_by INTEGER DEFAULT 0;",
+
 ];
 
 function createDatabaseStructure() {

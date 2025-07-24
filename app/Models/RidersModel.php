@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\Database\Exceptions\DatabaseException;
 
 class RidersModel extends Model
 {
@@ -83,27 +84,31 @@ class RidersModel extends Model
 
     public function getRiderPerformance($riderId)
     {
-        $result = $this->builder()
-                      ->select('
-                          riders.*,
-                          COUNT(orders.id) as total_orders,
-                          SUM(CASE WHEN orders.status = "delivered" THEN 1 ELSE 0 END) as completed_orders,
-                          AVG(orders.amount) as avg_order_value,
-                          SUM(orders.amount) as total_earnings
-                      ')
-                      ->join('orders', 'orders.rider_id = riders.id', 'left')
-                      ->where('riders.id', $riderId)
-                      ->groupBy('riders.id')
-                      ->get()
-                      ->getRowArray();
+        try {
+            $result = $this->builder()
+                        ->select('
+                            riders.*,
+                            COUNT(orders.id) as total_orders,
+                            SUM(CASE WHEN orders.status = "delivered" THEN 1 ELSE 0 END) as completed_orders,
+                            AVG(orders.amount) as avg_order_value,
+                            SUM(orders.amount) as total_earnings
+                        ')
+                        ->join('orders', 'orders.rider_id = riders.id', 'left')
+                        ->where('riders.id', $riderId)
+                        ->groupBy('riders.id')
+                        ->get()
+                        ->getRowArray();
 
-        if ($result) {
-            $result['completion_rate'] = $result['total_orders'] > 0 
-                ? round(($result['completed_orders'] / $result['total_orders']) * 100, 2) 
-                : 0;
+            if ($result) {
+                $result['completion_rate'] = $result['total_orders'] > 0 
+                    ? round(($result['completed_orders'] / $result['total_orders']) * 100, 2) 
+                    : 0;
+            }
+
+            return $result;
+        } catch (DatabaseException $e) {
+            return [];
         }
-
-        return $result;
     }
 
     public function getRidersWithFilters($filters = [])

@@ -107,7 +107,7 @@
             <div class="flex items-center justify-between mb-6">
                 <h3 class="text-lg font-semibold text-gray-900">Order Status</h3>
                 <div class="flex items-center space-x-2">
-                    <span class="text-sm text-gray-600">Total: <?= array_sum(array_slice($orderStats, 0, 4)) ?></span>
+                    <span class="text-sm text-gray-600">Total: 0</span>
                 </div>
             </div>
             <div class="h-64">

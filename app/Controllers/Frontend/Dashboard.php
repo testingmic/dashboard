@@ -38,6 +38,9 @@ class Dashboard extends LoadController
             'orderStats' => $this->getOrderStats()
         ];
 
+        // print_r($data);
+        // exit;
+
         return view('templates/header', $data)
              . view('dashboard/overview', $data)
              . view('templates/footer');
