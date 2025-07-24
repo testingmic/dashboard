@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Wekada Analytics Dashboard</title>
+    <meta name="description" content="Wekada Analytics Dashboard">
+    <meta name="keywords" content="Wekada, Analytics, Dashboard, Delivery, Logistics">
+    <link rel="icon" href="<?= base_url('images/logo.png') ?>" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
