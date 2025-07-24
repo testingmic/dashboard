@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Custom styles for enhanced UI */
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
         .sidebar-transition {
             transition: transform 0.3s ease-in-out;
         }
@@ -107,7 +116,7 @@
     </style>
 </head>
 <body class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen">
-    <!-- Mobile Sidebar Overlay -->
+    <!--                 -->
     <div class="fixed inset-0 bg-black bg-opacity-50 z-40 sidebar-overlay lg:hidden" id="sidebar-overlay"></div>
     
     <!-- Sidebar -->

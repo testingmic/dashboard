@@ -10,6 +10,7 @@ $routes->set404Override("\App\Controllers\BaseRoute::control");
 
 // Dashboard routes
 $routes->get('/', 'Frontend\Dashboard::index');
+$routes->get('login', 'Frontend\Dashboard::login');
 $routes->get('dashboard', 'Frontend\Dashboard::index');
 $routes->get('dashboard/getRealTimeData', 'Frontend\Dashboard::getRealTimeData');
 
