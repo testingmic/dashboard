@@ -75,6 +75,8 @@ currency.json
 
 # Vendor files
 vendor/
+writable/cache/FactoriesCache_config
+writable/cache/FileLocatorCache.php
 writable/logs/*
 !writable/logs/index.html
 writable/cache/*
