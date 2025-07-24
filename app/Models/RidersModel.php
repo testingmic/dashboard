@@ -42,6 +42,14 @@ class RidersModel extends Model
                    ->getResultArray();
     }
 
+    public function getAverageDeliveriesPerRider() {
+        return 0;
+    } 
+
+    public function getAverageEarningsPerRider() {
+        return 0;
+    }
+
     public function getTopRiders($limit = 5)
     {
         return $this->builder()

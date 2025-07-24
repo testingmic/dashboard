@@ -4,143 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?? 'Wekada Analytics Dashboard' ?></title>
-    
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Chart.js for analytics -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom styles -->
     <style>
+        /* Custom styles for enhanced UI */
         .sidebar-transition {
-            transition: all 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out;
         }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
         .card-hover:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Animated gradient background */
+        .animated-gradient {
+            background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Glass morphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Pulse animation for live indicators */
+        .pulse-live {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen">
     <!-- Sidebar -->
-    <div class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg sidebar-transition" id="sidebar">
-        <div class="flex items-center justify-between h-16 px-6 border-b border-gray-200">
-            <div class="flex items-center">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-chart-line text-white text-sm"></i>
+    <div class="fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-white to-gray-50 shadow-2xl sidebar-transition" id="sidebar">
+        <div class="flex flex-col h-full">
+            <!-- Logo Section -->
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold gradient-text">Wekada</h1>
+                        <p class="text-xs text-gray-500">Analytics Dashboard</p>
+                    </div>
                 </div>
-                <span class="ml-3 text-xl font-semibold text-gray-800">Wekada</span>
             </div>
-            <button id="sidebar-toggle" class="text-gray-500 hover:text-gray-700 lg:hidden">
-                <i class="fas fa-bars"></i>
-            </button>
+
+            <!-- Navigation -->
+            <nav class="flex-1 p-4 space-y-2">
+                <a href="<?= base_url('dashboard') ?>" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 <?= $page === 'dashboard' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50' ?>">
+                    <i class="fas fa-tachometer-alt w-5"></i>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                
+                <a href="<?= base_url('orders') ?>" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 <?= $page === 'orders' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50' ?>">
+                    <i class="fas fa-shopping-cart w-5"></i>
+                    <span class="font-medium">Orders</span>
+                </a>
+                
+                <a href="<?= base_url('users') ?>" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 <?= $page === 'users' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50' ?>">
+                    <i class="fas fa-users w-5"></i>
+                    <span class="font-medium">Users</span>
+                </a>
+                
+                <a href="<?= base_url('riders') ?>" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 <?= $page === 'riders' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50' ?>">
+                    <i class="fas fa-motorcycle w-5"></i>
+                    <span class="font-medium">Riders</span>
+                </a>
+                
+                <a href="<?= base_url('revenue') ?>" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 <?= $page === 'revenue' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50' ?>">
+                    <i class="fas fa-dollar-sign w-5"></i>
+                    <span class="font-medium">Revenue</span>
+                </a>
+                
+                <a href="<?= base_url('geospatial') ?>" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 <?= $page === 'geospatial' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50' ?>">
+                    <i class="fas fa-map-marker-alt w-5"></i>
+                    <span class="font-medium">Geospatial</span>
+                </a>
+                
+                <a href="<?= base_url('performance') ?>" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 <?= $page === 'performance' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50' ?>">
+                    <i class="fas fa-chart-line w-5"></i>
+                    <span class="font-medium">Performance</span>
+                </a>
+                
+                <a href="<?= base_url('feedback') ?>" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 <?= $page === 'feedback' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50' ?>">
+                    <i class="fas fa-star w-5"></i>
+                    <span class="font-medium">Feedback</span>
+                </a>
+                
+                <a href="<?= base_url('settings') ?>" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 <?= $page === 'settings' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50' ?>">
+                    <i class="fas fa-cog w-5"></i>
+                    <span class="font-medium">Settings</span>
+                </a>
+                
+                <a href="<?= base_url('reports') ?>" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 <?= $page === 'reports' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50' ?>">
+                    <i class="fas fa-file-alt w-5"></i>
+                    <span class="font-medium">Reports</span>
+                </a>
+            </nav>
+
+            <!-- User Section -->
+            <div class="p-4 border-t border-gray-200">
+                <div class="flex items-center space-x-3 p-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold">A</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-900">Admin User</p>
+                        <p class="text-xs text-gray-500">Administrator</p>
+                    </div>
+                    <button class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        
-        <nav class="mt-6 px-4">
-            <div class="space-y-2">
-                <a href="<?= base_url('dashboard') ?>" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors <?= $page === 'dashboard' ? 'bg-blue-50 text-blue-600' : '' ?>">
-                    <i class="fas fa-tachometer-alt w-5 h-5"></i>
-                    <span class="ml-3">Dashboard</span>
-                </a>
-                
-                <a href="<?= base_url('orders') ?>" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors <?= $page === 'orders' ? 'bg-blue-50 text-blue-600' : '' ?>">
-                    <i class="fas fa-shopping-cart w-5 h-5"></i>
-                    <span class="ml-3">Orders</span>
-                </a>
-                
-                <a href="<?= base_url('users') ?>" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors <?= $page === 'users' ? 'bg-blue-50 text-blue-600' : '' ?>">
-                    <i class="fas fa-users w-5 h-5"></i>
-                    <span class="ml-3">Users</span>
-                </a>
-                
-                <a href="<?= base_url('riders') ?>" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors <?= $page === 'riders' ? 'bg-blue-50 text-blue-600' : '' ?>">
-                    <i class="fas fa-motorcycle w-5 h-5"></i>
-                    <span class="ml-3">Riders</span>
-                </a>
-                
-                <a href="<?= base_url('revenue') ?>" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors <?= $page === 'revenue' ? 'bg-blue-50 text-blue-600' : '' ?>">
-                    <i class="fas fa-dollar-sign w-5 h-5"></i>
-                    <span class="ml-3">Revenue</span>
-                </a>
-                
-                <a href="<?= base_url('geospatial') ?>" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors <?= $page === 'geospatial' ? 'bg-blue-50 text-blue-600' : '' ?>">
-                    <i class="fas fa-map-marker-alt w-5 h-5"></i>
-                    <span class="ml-3">Geospatial</span>
-                </a>
-                
-                <a href="<?= base_url('performance') ?>" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors <?= $page === 'performance' ? 'bg-blue-50 text-blue-600' : '' ?>">
-                    <i class="fas fa-chart-bar w-5 h-5"></i>
-                    <span class="ml-3">Performance</span>
-                </a>
-                
-                <a href="<?= base_url('feedback') ?>" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors <?= $page === 'feedback' ? 'bg-blue-50 text-blue-600' : '' ?>">
-                    <i class="fas fa-comments w-5 h-5"></i>
-                    <span class="ml-3">Feedback</span>
-                </a>
-                
-                <a href="<?= base_url('settings') ?>" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors <?= $page === 'settings' ? 'bg-blue-50 text-blue-600' : '' ?>">
-                    <i class="fas fa-cog w-5 h-5"></i>
-                    <span class="ml-3">Settings</span>
-                </a>
-                
-                <a href="<?= base_url('reports') ?>" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors <?= $page === 'reports' ? 'bg-blue-50 text-blue-600' : '' ?>">
-                    <i class="fas fa-file-alt w-5 h-5"></i>
-                    <span class="ml-3">Reports</span>
-                </a>
-            </div>
-        </nav>
     </div>
 
     <!-- Main content -->
     <div class="lg:ml-64">
         <!-- Top navigation -->
-        <header class="bg-white shadow-sm border-b border-gray-200">
-            <div class="flex items-center justify-between h-16 px-6">
-                <div class="flex items-center">
-                    <button id="mobile-sidebar-toggle" class="text-gray-500 hover:text-gray-700 lg:hidden mr-4">
+        <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+            <div class="flex items-center justify-between px-6 py-4">
+                <div class="flex items-center space-x-4">
+                    <button id="sidebar-toggle" class="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <h1 class="text-xl font-semibold text-gray-800"><?= $title ?? 'Dashboard' ?></h1>
+                    <div class="hidden md:block">
+                        <h1 class="text-2xl font-bold gradient-text"><?= $title ?? 'Dashboard' ?></h1>
+                    </div>
                 </div>
                 
                 <div class="flex items-center space-x-4">
                     <!-- Notifications -->
-                    <button class="relative p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
-                        <i class="fas fa-bell"></i>
-                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    <button class="relative p-2 text-gray-600 hover:text-gray-900 transition-colors">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span class="absolute top-0 right-0 w-3 h-3 bg-gradient-to-r from-red-500 to-pink-500 rounded-full"></span>
                     </button>
                     
-                    <!-- User menu -->
+                    <!-- Live Status -->
+                    <div class="hidden md:flex items-center space-x-2 px-3 py-1 bg-gradient-to-r from-green-100 to-green-200 rounded-full">
+                        <div class="w-2 h-2 bg-green-500 rounded-full pulse-live"></div>
+                        <span class="text-xs font-medium text-green-800">Live</span>
+                    </div>
+                    
+                    <!-- User Menu -->
                     <div class="relative">
-                        <button id="user-menu-button" class="flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors">
-                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                                <span class="text-white text-sm font-medium">A</span>
+                        <button class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                            <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-bold">A</span>
                             </div>
-                            <span class="hidden md:block">Admin</span>
-                            <i class="fas fa-chevron-down text-xs"></i>
+                            <span class="hidden md:block text-sm font-medium text-gray-700">Admin</span>
+                            <i class="fas fa-chevron-down text-xs text-gray-500"></i>
                         </button>
-                        
-                        <!-- Dropdown menu -->
-                        <div id="user-menu-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
-                            <hr class="my-2">
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
-                        </div>
                     </div>
                 </div>
             </div>

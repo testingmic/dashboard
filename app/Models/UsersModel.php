@@ -87,14 +87,28 @@ class UsersModel extends Model {
             }
         }
 
-        // order by idsite DESC
-        $result = $query->paginate($limit, 'default', $offset);
+        $query->orderBy('id', 'DESC');
+        $query->limit($limit, $offset);
 
-        // get the paginate object
-        $this->paginateObject = $this->pager;
-
-        return $result;
+        return $query->get()->getResultArray();
     }
+
+    public function getUsersWithFilters($filters = []) {
+        return $this->findUsers(null, 0, $filters['search'] ?? null, $filters['status'] ?? null, $filters['userIds'] ?? null, $filters['data'] ?? []);   
+    }
+
+    public function getNewUsersCount($startDate = null, $endDate = null) {
+        $builder = $this->builder();
+        
+        if ($startDate && $endDate) {
+            $builder->where('created_at >=', $startDate)
+                   ->where('created_at <=', $endDate);
+        } elseif ($startDate) {
+            $builder->where('DATE(created_at)', $startDate);
+        }
+
+        return $builder->countAllResults();
+    }   
 
     /**
      * Get active users count

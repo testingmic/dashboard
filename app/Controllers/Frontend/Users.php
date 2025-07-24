@@ -88,10 +88,10 @@ class Users extends LoadController
         $stats['new_users_week'] = $this->usersModel->getNewUsersCount($thisWeek);
         
         // Average orders per user
-        $stats['avg_orders_per_user'] = $this->usersModel->getAverageOrdersPerUser();
+        $stats['avg_orders_per_user'] = 0;
         
         // Retention rate
-        $stats['retention_rate'] = $this->usersModel->getRetentionRate();
+        $stats['retention_rate'] = 0;
 
         return $stats;
     }

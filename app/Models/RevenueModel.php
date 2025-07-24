@@ -40,6 +40,10 @@ class RevenueModel extends Model
         return $result ? $result['total_revenue'] : 0;
     }
 
+    public function getRevenueWithFilters($filters = []) {
+        return [];
+    }
+
     public function getRevenueChartData($days = 30)
     {
         $startDate = date('Y-m-d', strtotime("-{$days} days"));
