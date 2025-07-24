@@ -74,25 +74,26 @@ test.php
 currency.json
 
 # Vendor files
-backend/vendor/
-backend/writable/logs/*
-!backend/writable/logs/index.html
-backend/writable/cache/*
-!backend/writable/cache/index.html
-backend/writable/debugbar/*
-!backend/writable/debugbar/index.html
-backend/writable/sessions/*
-!backend/writable/sessions/index.html
-backend/writable/uploads/*
-!backend/writable/uploads/index.html
+vendor/
+writable/logs/*
+!writable/logs/index.html
+writable/cache/*
+writable/cache/throttler*
+writable/debugbar/*
+!writable/debugbar/index.html
+writable/sessions/*
+!writable/sessions/index.html
+writable/uploads/*
+!writable/uploads/index.html
 # pnpm-lock.yaml
 package-lock.json
 
-backend/public/tmp/*
-!backend/public/tmp/index.html
+public/tmp/*
+!public/tmp/index.html
 .env
 .vscode
 composer.phar
 frontend/.env
-backend/writable/websites.json
-backend/writable/imf.json
+writable/websites.json
+writable/imf.json
+wekada_db*
