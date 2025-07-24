@@ -111,7 +111,22 @@ $databases = [
     );
     CREATE INDEX IF NOT EXISTS idx_revenue_order_id ON revenue (order_id);
     CREATE INDEX IF NOT EXISTS idx_revenue_payment_method ON revenue (payment_method);
-    CREATE INDEX IF NOT EXISTS idx_revenue_status ON revenue (status);"
+    CREATE INDEX IF NOT EXISTS idx_revenue_status ON revenue (status);",
+
+    "CREATE TABLE IF NOT EXISTS feedback (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        order_id VARCHAR(255) NOT NULL,
+        user_id INTEGER NOT NULL,
+        rider_id INTEGER NOT NULL,
+        rating INTEGER NOT NULL,
+        comment TEXT DEFAULT '',
+        feedback_type VARCHAR(255) NOT NULL,
+        is_flagged INTEGER DEFAULT 0,
+        flag_reason TEXT DEFAULT '',
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE INDEX IF NOT EXISTS idx_feedback_order_id ON feedback (order_id);"
 ];
 
 $alterTables = [
