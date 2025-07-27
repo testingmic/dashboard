@@ -9,11 +9,6 @@
                     <h2 class="text-3xl font-bold mb-2">Rider Analytics</h2>
                     <p class="text-green-100 text-lg">Monitor rider performance and availability</p>
                 </div>
-                <div class="flex items-center space-x-3">
-                    <button class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-xl hover:bg-opacity-30 transition-all duration-300 border border-white border-opacity-30">
-                        <i class="fas fa-plus mr-2"></i>Add Rider
-                    </button>
-                </div>
             </div>
         </div>
         <!-- Decorative elements -->
