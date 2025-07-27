@@ -24,87 +24,85 @@
     <!-- Enhanced Revenue Analytics Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Total Revenue -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-green-100 to-green-200 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <!-- <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> -->
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-white bg-gradient-to-br from-green-500 to-green-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-dollar-sign text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">+<?= rand(12, 25) ?>%</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">+<?= rand(12, 25) ?>%</span>
                     </div>
                 </div>
-                <p class="text-green-100 text-sm font-medium mb-1">Total Revenue</p>
-                <p class="text-3xl font-bold mb-2">$<?= number_format($stats['total_revenue'] ?? 0, 2) ?></p>
-                <p class="text-xs text-green-200">
+                <p class="text-black text-sm font-medium mb-1">Total Revenue</p>
+                <p class="text-3xl text-black font-bold mb-2">$<?= number_format($stats['total_revenue'] ?? 0, 2) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-arrow-up mr-1"></i>+<?= rand(12, 25) ?>% from last month
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-green-700 to-transparent rounded-full opacity-20"></div>
+            <!-- <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-green-700 to-transparent rounded-full opacity-20"></div> -->
         </div>
 
         <!-- This Month Revenue -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <!-- <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> -->
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-white bg-gradient-to-br from-blue-500 to-purple-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-calendar-alt text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">This Month</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">This Month</span>
                     </div>
                 </div>
-                <p class="text-blue-100 text-sm font-medium mb-1">Monthly Revenue</p>
-                <p class="text-3xl font-bold mb-2">$<?= number_format($stats['revenue_this_month'] ?? 0, 2) ?></p>
-                <p class="text-xs text-blue-200">
+                <p class="text-black text-sm font-medium mb-1">Monthly Revenue</p>
+                <p class="text-3xl text-black font-bold mb-2">$<?= number_format($stats['revenue_this_month'] ?? 0, 2) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-chart-line mr-1"></i>Target: $<?= number_format(($stats['revenue_this_month'] ?? 0) * 1.2, 2) ?>
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div>
+            <!-- <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div> -->
         </div>
 
         <!-- Commission Earned -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-pink-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-pink-100 to-pink-200 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <!-- <div class="absolute inset-0 bg-gradient-to-br from-pink-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> -->
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-white bg-gradient-to-br from-pink-500 to-purple-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-percentage text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full"><?= rand(15, 25) ?>%</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full"><?= rand(15, 25) ?>%</span>
                     </div>
                 </div>
-                <p class="text-pink-100 text-sm font-medium mb-1">Commission Earned</p>
-                <p class="text-3xl font-bold mb-2">$<?= number_format($stats['total_commission'] ?? 0, 2) ?></p>
-                <p class="text-xs text-pink-200">
+                <p class="text-black text-sm font-medium mb-1">Commission Earned</p>
+                <p class="text-3xl text-black font-bold mb-2">$<?= number_format($stats['total_commission'] ?? 0, 2) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-hand-holding-usd mr-1"></i><?= rand(15, 25) ?>% commission rate
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div>
+            <!-- <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div> -->
         </div>
 
         <!-- Net Profit -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-teal-400 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-teal-100 to-teal-200 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-white bg-gradient-to-br from-teal-500 to-teal-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-chart-pie text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Net</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">Net</span>
                     </div>
                 </div>
-                <p class="text-teal-100 text-sm font-medium mb-1">Net Profit</p>
-                <p class="text-3xl font-bold mb-2">$<?= number_format(($stats['total_commission'] ?? 0) - ($stats['total_refunds'] ?? 0), 2) ?></p>
-                <p class="text-xs text-teal-200">
+                <p class="text-black text-sm font-medium mb-1">Net Profit</p>
+                <p class="text-3xl text-black font-bold mb-2">$<?= number_format(($stats['total_commission'] ?? 0) - ($stats['total_refunds'] ?? 0), 2) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-arrow-up mr-1"></i>+<?= rand(8, 18) ?>% margin
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-teal-700 to-transparent rounded-full opacity-20"></div>
         </div>
     </div>
 

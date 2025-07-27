@@ -157,9 +157,9 @@
                     <span class="font-medium">Dashboard</span>
                 </a>
                 
-                <a href="<?= base_url('orders') ?>" class="flex items-center space-x-3 px-4 py-4 rounded-xl transition-all duration-300 <?= $page === 'orders' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 active:bg-blue-50' ?>" onclick="closeMobileSidebar()">
-                    <i class="fas fa-shopping-cart w-5 text-lg"></i>
-                    <span class="font-medium">Orders</span>
+                <a href="<?= base_url('performance') ?>" class="flex items-center space-x-3 px-4 py-4 rounded-xl transition-all duration-300 <?= $page === 'performance' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 active:bg-blue-50' ?>" onclick="closeMobileSidebar()">
+                    <i class="fas fa-chart-line w-5 text-lg"></i>
+                    <span class="font-medium">Performance</span>
                 </a>
                 
                 <a href="<?= base_url('users') ?>" class="flex items-center space-x-3 px-4 py-4 rounded-xl transition-all duration-300 <?= $page === 'users' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 active:bg-blue-50' ?>" onclick="closeMobileSidebar()">
@@ -180,11 +180,6 @@
                 <a href="<?= base_url('geospatial') ?>" class="flex items-center space-x-3 px-4 py-4 rounded-xl transition-all duration-300 <?= $page === 'geospatial' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 active:bg-blue-50' ?>" onclick="closeMobileSidebar()">
                     <i class="fas fa-map-marker-alt w-5 text-lg"></i>
                     <span class="font-medium">Geospatial</span>
-                </a>
-                
-                <a href="<?= base_url('performance') ?>" class="flex items-center space-x-3 px-4 py-4 rounded-xl transition-all duration-300 <?= $page === 'performance' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 active:bg-blue-50' ?>" onclick="closeMobileSidebar()">
-                    <i class="fas fa-chart-line w-5 text-lg"></i>
-                    <span class="font-medium">Performance</span>
                 </a>
                 
                 <a href="<?= base_url('feedback') ?>" class="flex items-center space-x-3 px-4 py-4 rounded-xl transition-all duration-300 <?= $page === 'feedback' ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 active:bg-blue-50' ?>" onclick="closeMobileSidebar()">

@@ -5,26 +5,37 @@ namespace App\Controllers\Frontend;
 use App\Controllers\LoadController;
 use App\Models\OrdersModel;
 use App\Models\RidersModel;
+use App\Controllers\Frontend\Orders;
+use App\Models\UsersModel;
 
 class Performance extends LoadController
 {
     protected $ordersModel;
     protected $ridersModel;
+    protected $ordersController;
+    protected $usersModel;
 
     public function __construct()
     {
         $this->ordersModel = new OrdersModel();
         $this->ridersModel = new RidersModel();
+        $this->ordersController = new Orders();
+        $this->usersModel = new UsersModel();
     }
 
     public function index()
     {
+        $filters = $this->request->getGet();
         $data = [
             'title' => 'Service Performance',
             'page' => 'performance',
             'stats' => $this->getPerformanceStatistics(),
             'chartData' => $this->getPerformanceChartData(),
-            'rejectionReasons' => $this->getRejectionReasons()
+            'rejectionReasons' => $this->getRejectionReasons(),
+            'orders' => $this->ordersModel->getOrdersWithFilters($filters),
+            'users' => $this->usersModel->findAll(),
+            'riders' => $this->ridersModel->findAll(),
+            'filters' => $filters,
         ];
 
         return view('templates/header', $data)

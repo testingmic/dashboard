@@ -24,87 +24,79 @@
     <!-- Feedback Statistics Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Total Feedback -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-blue-200 to-blue-100 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-comments text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Total</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">Total</span>
                     </div>
                 </div>
-                <p class="text-blue-100 text-sm font-medium mb-1">Total Feedback</p>
-                <p class="text-3xl font-bold mb-2"><?= number_format($stats['total_feedback'] ?? 0) ?></p>
-                <p class="text-xs text-blue-200">
+                <p class=" text-black text-sm font-medium mb-1">Total Feedback</p>
+                <p class="text-3xl text-black font-bold mb-2"><?= number_format($stats['total_feedback'] ?? 0) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-arrow-up mr-1"></i>All time reviews
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-blue-700 to-transparent rounded-full opacity-20"></div>
         </div>
 
         <!-- Average Rating -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-yellow-400 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-yellow-200 to-orange-300 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-star text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Avg</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">Avg</span>
                     </div>
                 </div>
-                <p class="text-yellow-100 text-sm font-medium mb-1">Average Rating</p>
-                <p class="text-3xl font-bold mb-2"><?= number_format($stats['avg_rating'] ?? 0, 1) ?></p>
-                <p class="text-xs text-yellow-200">
+                <p class=" text-black text-sm font-medium mb-1">Average Rating</p>
+                <p class="text-3xl text-black font-bold mb-2"><?= number_format($stats['avg_rating'] ?? 0, 1) ?></p>
+                <p class="text-xs  text-black">
                     <i class="fas fa-star mr-1"></i>Out of 5 stars
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-orange-700 to-transparent rounded-full opacity-20"></div>
         </div>
 
         <!-- Negative Feedback -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-red-400 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-green-200 to-green-100 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-exclamation-triangle text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Alert</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">Alert</span>
                     </div>
                 </div>
-                <p class="text-red-100 text-sm font-medium mb-1">Negative Feedback</p>
-                <p class="text-3xl font-bold mb-2"><?= number_format($stats['negative_feedback'] ?? 0) ?></p>
-                <p class="text-xs text-red-200">
+                <p class=" text-black text-sm font-medium mb-1">Negative Feedback</p>
+                <p class="text-3xl text-black font-bold mb-2"><?= number_format($stats['negative_feedback'] ?? 0) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-arrow-down mr-1"></i>Needs attention
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-red-700 to-transparent rounded-full opacity-20"></div>
         </div>
 
         <!-- Flagged Users -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-purple-200 to-purple-300 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-flag text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Flagged</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">Flagged</span>
                     </div>
                 </div>
-                <p class="text-purple-100 text-sm font-medium mb-1">Flagged Users</p>
-                <p class="text-3xl font-bold mb-2"><?= number_format($stats['flagged_users'] ?? 0) ?></p>
-                <p class="text-xs text-purple-200">
+                <p class=" text-black text-sm font-medium mb-1">Flagged Users</p>
+                <p class="text-3xl text-black font-bold mb-2"><?= number_format($stats['flagged_users'] ?? 0) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-user-slash mr-1"></i>Under review
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div>
         </div>
     </div>
 

@@ -203,7 +203,7 @@ const OverviewHandler = {
                         labels: {
                             usePointStyle: true,
                             padding: 20,
-                            color: '#ffffff',
+                            color: '#000000',
                             font: {
                                 size: 12,
                                 weight: 'bold'
@@ -212,8 +212,8 @@ const OverviewHandler = {
                     },
                     tooltip: {
                         backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        titleColor: '#ffffff',
-                        bodyColor: '#ffffff',
+                        titleColor: '#000000',
+                        bodyColor: '#000000',
                         borderColor: '#ec4899',
                         borderWidth: 2,
                         cornerRadius: 12,
@@ -236,14 +236,14 @@ const OverviewHandler = {
                         title: {
                             display: true,
                             text: 'Revenue ($)',
-                            color: '#ffffff',
+                            color: '#000000',
                             font: {
                                 size: 14,
                                 weight: 'bold'
                             }
                         },
                         ticks: {
-                            color: '#ffffff',
+                            color: '#000000',
                             callback: function(value) {
                                 return '$' + (value / 1000) + 'k';
                             }
@@ -259,7 +259,7 @@ const OverviewHandler = {
                         title: {
                             display: true,
                             text: 'Orders',
-                            color: '#ffffff',
+                            color: '#000000',
                             font: {
                                 size: 14,
                                 weight: 'bold'
@@ -269,7 +269,7 @@ const OverviewHandler = {
                             drawOnChartArea: false,
                         },
                         ticks: {
-                            color: '#ffffff',
+                            color: '#000000',
                             callback: function(value) {
                                 return value.toLocaleString();
                             }
@@ -280,7 +280,7 @@ const OverviewHandler = {
                             color: 'rgba(255, 255, 255, 0.1)'
                         },
                         ticks: {
-                            color: '#ffffff'
+                            color: '#000000'
                         }
                     }
                 }
@@ -322,7 +322,7 @@ const OverviewHandler = {
                         labels: {
                             usePointStyle: true,
                             padding: 20,
-                            color: '#ffffff',
+                            color: '#000000',
                             font: {
                                 size: 12,
                                 weight: 'bold'
@@ -331,8 +331,8 @@ const OverviewHandler = {
                     },
                     tooltip: {
                         backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        titleColor: '#ffffff',
-                        bodyColor: '#ffffff',
+                        titleColor: '#000000',
+                        bodyColor: '#000000',
                         borderColor: '#ec4899',
                         borderWidth: 2,
                         cornerRadius: 12,

@@ -24,87 +24,79 @@
     <!-- Enhanced Geospatial Analytics Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Active Orders -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-white bg-gradient-to-br from-blue-500 to-blue-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-shopping-bag text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Live</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">Live</span>
                     </div>
                 </div>
-                <p class="text-blue-100 text-sm font-medium mb-1">Active Orders</p>
-                <p class="text-3xl font-bold mb-2" id="active-orders-count"><?= count($activeOrders) ?></p>
-                <p class="text-xs text-blue-200">
+                <p class="text-black text-sm font-medium mb-1">Active Orders</p>
+                <p class="text-3xl text-black font-bold mb-2" id="active-orders-count"><?= count($activeOrders) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-circle mr-1 animate-pulse"></i>Currently in progress
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-blue-700 to-transparent rounded-full opacity-20"></div>
         </div>
 
         <!-- Online Riders -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-green-100 to-green-200 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-white bg-gradient-to-br from-green-500 to-green-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-motorcycle text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Online</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">Online</span>
                     </div>
                 </div>
-                <p class="text-green-100 text-sm font-medium mb-1">Online Riders</p>
-                <p class="text-3xl font-bold mb-2" id="online-riders-count"><?= count($onlineRiders) ?></p>
-                <p class="text-xs text-green-200">
+                <p class="text-black text-sm font-medium mb-1">Online Riders</p>
+                <p class="text-3xl text-black font-bold mb-2" id="online-riders-count"><?= count($onlineRiders) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-circle mr-1 animate-pulse"></i>Available for orders
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-green-700 to-transparent rounded-full opacity-20"></div>
         </div>
 
         <!-- Average Delivery Time -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-white bg-gradient-to-br from-purple-500 to-purple-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-clock text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full"><?= rand(18, 28) ?> min</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full"><?= rand(18, 28) ?> min</span>
                     </div>
                 </div>
-                <p class="text-purple-100 text-sm font-medium mb-1">Avg Delivery Time</p>
-                <p class="text-3xl font-bold mb-2"><?= rand(18, 28) ?> min</p>
-                <p class="text-xs text-purple-200">
+                <p class="text-black text-sm font-medium mb-1">Avg Delivery Time</p>
+                <p class="text-3xl text-black font-bold mb-2"><?= rand(18, 28) ?> min</p>
+                <p class="text-xs text-black">
                     <i class="fas fa-arrow-down mr-1"></i>-<?= rand(5, 15) ?>% from last week
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div>
         </div>
 
         <!-- Service Coverage -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-teal-400 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-teal-100 to-teal-200 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-white bg-gradient-to-br from-teal-500 to-teal-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-globe text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full"><?= rand(80, 95) ?>%</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full"><?= rand(80, 95) ?>%</span>
                     </div>
                 </div>
-                <p class="text-teal-100 text-sm font-medium mb-1">Service Coverage</p>
-                <p class="text-3xl font-bold mb-2"><?= rand(80, 95) ?>%</p>
-                <p class="text-xs text-teal-200">
+                <p class="text-black text-sm font-medium mb-1">Service Coverage</p>
+                <p class="text-3xl text-black font-bold mb-2"><?= rand(80, 95) ?>%</p>
+                <p class="text-xs text-black">
                     <i class="fas fa-plus mr-1"></i>+<?= rand(2, 8) ?>% expansion
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-teal-700 to-transparent rounded-full opacity-20"></div>
         </div>
     </div>
 

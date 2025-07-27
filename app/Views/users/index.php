@@ -24,87 +24,83 @@
     <!-- User Statistics Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Total Users -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-blue-200 to-blue-50 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-users text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">+5%</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">+5%</span>
                     </div>
                 </div>
-                <p class="text-blue-100 text-sm font-medium mb-1">Total Users</p>
-                <p class="text-3xl font-bold mb-2"><?= number_format($stats['total_users']) ?></p>
-                <p class="text-xs text-blue-200">
+                <p class="text-black text-sm font-medium mb-1">Total Users</p>
+                <p class="text-3xl text-black font-bold mb-2"><?= number_format($stats['total_users']) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-arrow-up mr-1"></i>+5% this month
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-blue-700 to-transparent rounded-full opacity-20"></div>
+            <!-- <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-blue-700 to-transparent rounded-full opacity-20"></div> -->
         </div>
 
         <!-- Active Users -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-green-200 to-green-50 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-user-check text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Live</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">Live</span>
                     </div>
                 </div>
-                <p class="text-green-100 text-sm font-medium mb-1">Active Users</p>
-                <p class="text-3xl font-bold mb-2"><?= number_format($stats['active_users']) ?></p>
-                <p class="text-xs text-green-200">
+                <p class="text-black text-sm font-medium mb-1">Active Users</p>
+                <p class="text-3xl text-black font-bold mb-2"><?= number_format($stats['active_users']) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-circle mr-1 animate-pulse"></i>Last 30 days
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-green-700 to-transparent rounded-full opacity-20"></div>
+            <!-- <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-green-700 to-transparent rounded-full opacity-20"></div> -->
         </div>
 
         <!-- New Users This Month -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-purple-200 to-purple-50 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-user-plus text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">New</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">New</span>
                     </div>
                 </div>
-                <p class="text-purple-100 text-sm font-medium mb-1">New Users</p>
-                <p class="text-3xl font-bold mb-2"><?= number_format($stats['new_users_month']) ?></p>
-                <p class="text-xs text-purple-200">
+                <p class="text-black text-sm font-medium mb-1">New Users</p>
+                <p class="text-3xl text-black font-bold mb-2"><?= number_format($stats['new_users_month']) ?></p>
+                <p class="text-xs text-black">
                     <i class="fas fa-calendar mr-1"></i>This month
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div>
+            <!-- <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-700 to-transparent rounded-full opacity-20"></div> -->
         </div>
 
         <!-- Retention Rate -->
-        <div class="group relative overflow-hidden bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="group relative overflow-hidden bg-gradient-to-br from-orange-200 to-orange-50 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                         <i class="fas fa-chart-pie text-white text-xl"></i>
                     </div>
                     <div class="text-right">
-                        <span class="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">Rate</span>
+                        <span class="text-xs text-black bg-white bg-opacity-20 px-2 py-1 rounded-full">Rate</span>
                     </div>
                 </div>
-                <p class="text-orange-100 text-sm font-medium mb-1">Retention Rate</p>
-                <p class="text-3xl font-bold mb-2"><?= number_format($stats['retention_rate'], 1) ?>%</p>
-                <p class="text-xs text-orange-200">
+                <p class="text-black text-sm font-medium mb-1">Retention Rate</p>
+                <p class="text-3xl text-black font-bold mb-2"><?= number_format($stats['retention_rate'], 1) ?>%</p>
+                <p class="text-xs text-black">
                     <i class="fas fa-chart-line mr-1"></i>Monthly
                 </p>
             </div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-orange-700 to-transparent rounded-full opacity-20"></div>
+            <!-- <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-orange-700 to-transparent rounded-full opacity-20"></div> -->
         </div>
     </div>
 
