@@ -128,7 +128,7 @@
             'highCancellationAreas': <?= json_encode($highCancellationAreas ?? []) ?>,
         };
     </script>
-    <script src="<?= base_url('js/app.js') ?>"></script>
+    <script src="<?= base_url('js/app.js') ?>?version=1.0.0"></script>
 </head>
 <body class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen">
     <!--                 -->
